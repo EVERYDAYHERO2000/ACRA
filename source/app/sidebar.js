@@ -17,7 +17,7 @@ export default class Sidebar {
            for (var i = 0; i < query.length; i++) {
 
               let color = (query[i].colorIndex) ? _this._colors.hex[ query[i].colorIndex ] : null;  
-              let colorSelect = (color) ? `<div class="color-select" style="background-color:#${color}" data-color="${color}" ></div>` : `${query[i].title[0]}`;  
+              let colorSelect = (color) ? `<div class="color-select" data-item="${query[i].id}" style="background-color:#${color}" data-color="${color}" ></div>` : `${query[i].title[0]}`;  
               let groupClass = (query[i].type == 'group') ? 'sidebar__item_group' : '';
               let groupHidden = (query[i].visible) ? '' : 'hidden';
               let visible = (query[i].visible) ? 'on' : 'off';
@@ -33,7 +33,7 @@ export default class Sidebar {
                     
                     let title = (value[v].title) ? value[v].title : value[v].value[0];
                     let color = (value[v].colorIndex) ? _this._colors.hex[ value[v].colorIndex ] : null;  
-                    let colorSelect = (color) ? `<div class="color-select" style="background-color:#${color}" data-color="${color}" ></div>` : `${title[0]}`;
+                    let colorSelect = (color) ? `<div class="color-select" data-item="${query[i].id}" data-value="${value[v].id}" style="background-color:#${color}" data-color="${color}" ></div>` : `${title[0]}`;
                     let disableClass = (query[i].visible) ? '' : 'tool_disable';
                     let hiddenClass = (query[i].visible) ? '' : 'hidden';
 
@@ -165,21 +165,52 @@ export default class Sidebar {
 
                 let currentColor = e.target.getAttribute('data-color');
                 let colorBox = '';
+                let currentColorEl = e.target;
 
                 for(var c = 0; c < _this._colors.hex.length; c++) {
 
                     let color = _this._colors.hex[c];
-                    let currentClass = (color == currentColor) ? 'colorbox__color_selected' : ''
+                    let currentClass = (color == currentColor) ? 'colorbox__color_selected' : '';
 
                     colorBox += `
-                        <div class="colorbox__color ${currentClass}" data-color="${color}" style="background-color:#${color}"></div>
+                        <div class="colorbox__color ${currentClass}" data-color="${c}" style="background-color:#${color}"></div>
                     `
 
                 }
 
-                let colorTpl = `<div class="colorbox">${colorBox}</div>`;
+                let colorSelect = document.createElement('div');
+                colorSelect.classList.add('colorbox');
+                colorSelect.innerHTML = colorBox;
 
-                console.log(colorTpl);
+                let top = (e.layerY - 100 > 0) ? e.layerY - 100 : 0;
+                let left = (e.layerX - 100 > 0) ? e.layerX - 100 : 0
+
+                colorSelect.style.top = top + 'px';
+                colorSelect.style.left = left + 'px';
+                
+                colorSelect.setAttribute( 'data-item', e.target.getAttribute('data-item') );
+                colorSelect.setAttribute( 'data-value', e.target.getAttribute('data-value') );
+
+                colorSelect.addEventListener('mouseleave', function(e){
+                    colorSelect.remove();
+                });
+                colorSelect.addEventListener('click', function(e){
+
+                    let dataItem = e.target.closest('.colorbox').getAttribute('data-item');
+                    let dataValue = e.target.closest('.colorbox').getAttribute('data-value');
+                    let colorIndex = e.target.getAttribute('data-color');
+
+                    currentColorEl.style.backgroundColor = '#' + _this._colors.hex[colorIndex];
+
+                    _this._query[dataItem].value[dataValue].colorIndex = colorIndex;
+
+                    _this._filter.setQuery(_this._query);
+                    
+                    colorSelect.remove();
+
+                })
+
+                container.appendChild(colorSelect);
 
             }
 
@@ -300,7 +331,8 @@ export default class Sidebar {
 
             }
 
-        })    
+        });
+        
 
         document.addEventListener('mousemove',function(e){
 
