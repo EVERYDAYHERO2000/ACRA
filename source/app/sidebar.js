@@ -182,8 +182,8 @@ export default class Sidebar {
                 colorSelect.classList.add('colorbox');
                 colorSelect.innerHTML = colorBox;
 
-                let top = (e.layerY - 100 > 0) ? e.layerY - 100 : 0;
-                let left = (e.layerX - 100 > 0) ? e.layerX - 100 : 0
+                let top = (e.pageY - 100 > 0) ? e.pageY - 100 : 0;
+                let left = (e.layerX - 100 > -100) ? e.layerX - 100 : 0
 
                 colorSelect.style.top = top + 'px';
                 colorSelect.style.left = left + 'px';
