@@ -1,0 +1,61 @@
+#graph {
+    height: 400px;
+    width: 100%;
+    position: absolute;
+    bottom: 20px;
+    z-index: 1000;
+    pointer-events: none;
+  }
+
+#graph * {
+    pointer-events: none;
+}
+
+  .ct-point {
+    pointer-events: all;
+    cursor: pointer;
+    transition: all .2s ease;
+    transform-origin: center;
+  }
+
+  .ct-point:hover {
+    stroke-width: 20px;
+  }
+
+  .ct-point.focus {
+    stroke-width: 20px;
+  }
+
+  .ct-series .ct-line {
+    fill : none;
+    stroke-width: 2px;
+  }
+
+  .ct-label {
+    color: rgba(255,255,255,.5);
+    font-size: 10px;
+  }
+
+  .f-horizontal .ct-label {
+    display: none;
+  }
+
+  .f-horizontal:nth-child(5n+1) .ct-label {
+     display: block; 
+  }  
+
+  @media screen and (max-width: 500px) {
+
+    .ct-horizontal, .f-horizontal .ct-label, .f-horizontal:nth-child(5n+1) .ct-label {
+
+      display : none;
+
+    }
+
+    .f-horizontal:first-child .ct-label.ct-horizontal, .f-horizontal .ct-first, .f-horizontal .ct-last {
+
+      display: block!important;
+
+    }
+
+  }  
