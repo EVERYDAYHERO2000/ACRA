@@ -67,7 +67,7 @@ export default class Sidebar {
                     <div class="sidebar__value ${hiddenClass}" date-index="${value[v].id}">
                         <div class="sidebar__item-title">
                             <div class="sidebar__item-icon">${colorSelect}</div>
-                            <div class="sidebar__item-value-name">${title}</div>
+                            <div class="sidebar__item-value-name">${title} <span class="sidebar__item-hint">${value[v].hint}</span></div>
                         </div>
                         <div class="sidebar__item-tools">
                             <div class="tool tool_visible ${disableClass}" data-ingroup="true" data-type="${value[v].type}" data-control="${value[v].control}" data-visible="${visibleBlock}"></div>

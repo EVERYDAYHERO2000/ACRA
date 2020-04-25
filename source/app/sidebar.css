@@ -245,3 +245,8 @@
 #sidebar:hover .sidebar__value.hidden .sidebar__item-icon {
     opacity: 1;
 }
+
+.sidebar__item-hint {
+    color: rgb(255, 242, 129);
+    font-family: monospace;
+}

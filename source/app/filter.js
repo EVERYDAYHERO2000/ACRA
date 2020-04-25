@@ -42,6 +42,14 @@ export default class Filter {
 
                     query[q].value[i].visible = (query[q].value[i].visible) ? query[q].value[i].visible :  query[q].visible;
 
+                    query[q].value[i].hint = (function(value){
+
+                        return (value.length > 1) ? ( (''+value[0])[1] == (''+value[value.length - 1])[1] ) ? (''+value[0])[0] + (''+value[0])[1] + '…' : (''+value[0])[0] + (''+value[0])[1] + '–' + (''+value[value.length-1])[0] + (''+value[value.length-1])[1] : value[0]
+
+                    })(query[q].value[i].value);
+
+                    console.log(query[q].value[i].hint)
+
                 }
 
             }
