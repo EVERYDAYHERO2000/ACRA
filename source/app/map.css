@@ -41,6 +41,19 @@
 .leaflet-bar a.leaflet-control-play {
     font-size: 24px;
     padding-top: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.leaflet-bar a.leaflet-control-play span {
+    background: url(../assets/icons.svg);
+    background-repeat: no-repeat;
+    width: 20px;
+    height: 20px;
+    background-position: 0 -60px;
+    transform-origin: center;
+    transform: scale(1.4);
 }
 
 .leaflet-bar a.leaflet-control-play[data-state=play] {

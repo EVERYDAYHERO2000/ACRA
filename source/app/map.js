@@ -57,7 +57,7 @@ export default class Map {
         const controlsContainer = document.querySelector('.leaflet-control-zoom a:last-child');
         
 
-        const playButtonTpl = `<a class="leaflet-control-play" href="#" title="Play" role="button" aria-label="Play" data-state="pause">▶</a>`
+        const playButtonTpl = `<a class="leaflet-control-play" href="#" title="Play" role="button" aria-label="Play" data-state="pause"><span></span></a>`
         controlsContainer.insertAdjacentHTML('afterend', playButtonTpl);
         this._playButton = document.body.getElementsByClassName('leaflet-control-play')[0]
         this._playButton.addEventListener("click", function(){

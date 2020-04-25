@@ -52,6 +52,12 @@
     padding: 10px 0;
 }
 
+.sidebar__item-body {
+    margin: 0 -10px;
+    box-sizing: border-box;
+    width: calc(100% + 20px);
+}
+
 .sidebar__item-title {
     display: flex;
     align-items: center;
@@ -119,7 +125,7 @@
 }
 
 .sidebar__value {
-    padding: 10px 0;
+    padding: 10px;
 }
 
 .sidebar__item-value-name, .sidebar__item-name {
@@ -177,4 +183,18 @@
 
 .close-button.visible {
     pointer-events: all;
+}
+
+.sidebar__value, .sidebar__item {
+    box-sizing: border-box;
+}
+
+
+
+.sidebar__value:hover {
+    background-color: rgba(255,255,255,.1);
+}
+
+.sidebar__value.hidden:hover {
+    background-color: transparent;
 }

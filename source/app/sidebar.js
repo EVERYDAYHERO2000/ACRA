@@ -35,6 +35,7 @@ export default class Sidebar {
                     let color = (value[v].colorIndex) ? _this._colors.hex[ value[v].colorIndex ] : null;  
                     let colorSelect = (color) ? `<div class="color-select" style="background-color:#${color}" data-color="${color}" ></div>` : `${title[0]}`;
                     let disableClass = (query[i].visible) ? '' : 'tool_disable';
+                    let hiddenClass = (query[i].visible) ? '' : 'hidden';
 
                     let visibleBlock = 'off';
 
@@ -63,7 +64,7 @@ export default class Sidebar {
 
 
                     blocks += `
-                    <div class="sidebar__value" date-index="${value[v].id}">
+                    <div class="sidebar__value ${hiddenClass}" date-index="${value[v].id}">
                         <div class="sidebar__item-title">
                             <div class="sidebar__item-icon">${colorSelect}</div>
                             <div class="sidebar__item-value-name">${title}</div>
@@ -157,7 +158,30 @@ export default class Sidebar {
             if (isMobile) {
                 container.classList.add('visible');
                 closeButton.classList.add('visible');
-            }    
+            }  
+            
+            //color select
+            if (e.target.className == 'color-select') {
+
+                let currentColor = e.target.getAttribute('data-color');
+                let colorBox = '';
+
+                for(var c = 0; c < _this._colors.hex.length; c++) {
+
+                    let color = _this._colors.hex[c];
+                    let currentClass = (color == currentColor) ? 'colorbox__color_selected' : ''
+
+                    colorBox += `
+                        <div class="colorbox__color ${currentClass}" data-color="${color}" style="background-color:#${color}"></div>
+                    `
+
+                }
+
+                let colorTpl = `<div class="colorbox">${colorBox}</div>`;
+
+                console.log(colorTpl);
+
+            }
 
             //toggle tab
             if (e.target.className == 'sidebar__item-name'){

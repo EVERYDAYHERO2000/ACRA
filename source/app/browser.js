@@ -84,8 +84,6 @@ export default class Browser {
             })()
         }
 
-        document.body.classList.add(result.browserName, result.isMobile, result.platform);
-
         return result
 
     };
