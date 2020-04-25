@@ -235,4 +235,13 @@
     .color-select {
         pointer-events: none;
     }
-}    
+} 
+
+.sidebar__value.hidden .sidebar__item-icon {
+    pointer-events: none;
+    opacity: 0;
+}
+
+#sidebar:hover .sidebar__value.hidden .sidebar__item-icon {
+    opacity: 1;
+}

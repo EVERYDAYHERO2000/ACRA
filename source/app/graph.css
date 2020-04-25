@@ -37,25 +37,47 @@
   }
 
   .f-horizontal .ct-label {
-    display: none;
+    visibility: hidden;
   }
 
   .f-horizontal:nth-child(5n+1) .ct-label {
-     display: block; 
+     visibility: visible;
   }  
 
   @media screen and (max-width: 500px) {
 
     .ct-horizontal, .f-horizontal .ct-label, .f-horizontal:nth-child(5n+1) .ct-label {
 
-      display : none;
+      visibility: hidden;
 
     }
 
     .f-horizontal:first-child .ct-label.ct-horizontal, .f-horizontal .ct-first, .f-horizontal .ct-last {
 
-      display: block!important;
+      visibility: visible!important;
 
     }
 
   }  
+
+  .f-horizontal:hover .ct-label {
+    visibility: visible;
+    padding: 3px;
+    background-color: rgba(255,255,255,0.6);
+    border-radius: 3px;
+    color: #000;
+  }
+
+  .f-horizontal_active .ct-label {
+    background-color: #fff;
+    visibility: visible;
+    padding: 3px;
+    border-radius: 3px;
+    color: #000;
+  }
+
+  .f-horizontal {
+    pointer-events: all!important;
+    cursor: pointer;
+  }
+

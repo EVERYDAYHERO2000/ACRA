@@ -20,7 +20,6 @@ export default class Map {
 
         this._tileUrl = `https://{s}.tiles.mapbox.com/v4/mapbox.dark/{z}/{x}/{y}@2x.${format}?access_token=pk.eyJ1IjoiZ2xlYWZsZXQiLCJhIjoiY2lxdWxoODl0MDA0M2h4bTNlZ2I1Z3gycyJ9.vrEWCC2nwsGfAYKZ7c4HZA`;
         this._ssic = [];
-        this._step = 1000;
         this._animationTimer = null;
 
         this.colors = new Colors();
@@ -72,6 +71,14 @@ export default class Map {
             }    
 
         });
+
+    
+
+        this._dateElem = document.createElement('div');
+        this._dateElem.classList.add('date-timer');
+        this._dateElem.innerHTML = '';
+        
+        document.querySelector('#map').appendChild(this._dateElem);
 
         // -- WebGl setup
         const shader = new Shader();
@@ -135,9 +142,10 @@ export default class Map {
 
         let keys = []; 
         for (var k in dates) {
-            keys.push(k);
+            keys.push(+k);
         }
         this._minStep = keys[0];
+        this._maxStep = keys[keys.length - 1];
 
         document.querySelector('.leaflet-control-container').classList.add('leaflet-control-container_visible');
 
@@ -148,10 +156,14 @@ export default class Map {
     play (fromStep) {
 
         const _this = this;
-        const maxStep = 135;
+        const maxStep = this._maxStep;
         const speed = 100;
 
+        
+
         if ( _this._step >= maxStep ) _this._step = this._minStep;
+
+        
 
         this._animationTimer = setInterval(function(){
 
@@ -194,11 +206,23 @@ export default class Map {
 
         this._verts = [];
         this._vertsLength = 0;
-        this._step = step || this._step;
+        this._step = step || this._maxStep;
 
         const _this = this;
 
         if (this._data){
+
+            this._dateElem.innerHTML = this._dates[this._step].date;
+
+            const foreignObject = document.querySelectorAll('.f-horizontal');
+
+            for (var f of foreignObject) {
+
+                f.classList.remove('f-horizontal_active');
+                if (f.getAttribute('data-step') == this._step) f.classList.add('f-horizontal_active');
+
+            }
+  
 
             var il = this._data.length;
 

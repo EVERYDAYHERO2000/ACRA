@@ -70,5 +70,18 @@
     transition: all .3s ease;
 }
 
+.leaflet-control a:hover, .leaflet-control:foces {
+    background: none;
+}
 
+.date-timer {
+    position: absolute;
+    bottom: 50px;
+    left: 50px;
+    color: #fff;
+    font-size: 54px;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+    pointer-events: none;
+}
 

@@ -102,10 +102,21 @@ export default class Graph {
               
               const foreignObject = document.querySelectorAll('foreignObject');
 
+              let count = _this._map._minStep;
+
               for (var f of foreignObject) {
 
                 if (f.firstElementChild.className.includes('ct-horizontal')) {
                   f.classList.add('f-horizontal');
+                  f.setAttribute('data-step', count);
+
+                  if (count == _this._map._step) {
+
+                    f.classList.add('f-horizontal_active');
+
+                  }
+
+                  count++
                 }
 
               }
@@ -114,6 +125,8 @@ export default class Graph {
 
               horizontal[0].classList.add('ct-first');
               horizontal[horizontal.length - 1].classList.add('ct-last');
+
+
 
           });
 
@@ -126,6 +139,27 @@ export default class Graph {
             }  
 
           });  
+
+          document.querySelector('#graph').addEventListener('click', function(e){
+             
+              if (e.target.classList.value.includes('f-horizontal')) {
+
+                  let step = e.target.getAttribute('data-step');
+                  _this._map.drawData (step);
+
+                  const foreignObject = document.querySelectorAll('.f-horizontal');
+
+                  for (var f of foreignObject) {
+
+                      f.classList.remove('f-horizontal_active');
+                      
+                  }
+
+                  e.target.classList.add('f-horizontal_active');                  
+
+              }
+
+          })  
 
           return this;
     }    
