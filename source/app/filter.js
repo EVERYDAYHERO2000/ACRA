@@ -48,7 +48,7 @@ export default class Filter {
 
                     })(query[q].value[i].value);
 
-                    console.log(query[q].value[i].hint)
+                    
 
                 }
 

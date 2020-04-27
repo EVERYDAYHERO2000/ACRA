@@ -2,6 +2,7 @@
 @import "loader.css" all;
 @import "graph.css" all;
 @import "sidebar.css" all;
+@import "map-svg.css" all;
 
 body {
     margin:0;

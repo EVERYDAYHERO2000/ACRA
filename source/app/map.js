@@ -3,6 +3,7 @@ import Shader from "./shader.js";
 import Colors from "./colors.js";
 import Browser from "./browser.js";
 import Loader from "./loader.js";
+import MapSvg from "./map-svg.js";
 
 export default class Map {
 
@@ -72,7 +73,20 @@ export default class Map {
 
         });
 
-    
+
+        this._svgMap = L.imageOverlay('../source/data/map.svg', [[1.1585, 103.602],	[1.472,	104.089]]).addTo(this._map);
+
+        var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            svg.innerHTML = new MapSvg().svg;
+            svg.setAttribute('class', _this._svgMap._image.getAttribute('class'));
+            svg.setAttribute('style', _this._svgMap._image.getAttribute('style'));
+            svg.setAttribute('width', '11770');
+            svg.setAttribute('height', '7662');
+            svg.setAttribute('viewBox', "0 0 11770 7662");
+
+        _this._svgMap._image.replaceWith( svg );
+        
+        _this._svgMap._image = svg;
 
         this._dateElem = document.createElement('div');
         this._dateElem.classList.add('date-timer');
@@ -211,6 +225,33 @@ export default class Map {
         const _this = this;
 
         if (this._data){
+
+
+            let landsArea = this._svgMap._image.querySelectorAll('.land-area');
+
+            for ( var a of landsArea) {
+
+                a.classList.remove('land-area_visible')
+
+                if ( this._step <= 73 ) {
+
+                    if (a.className.baseVal.includes('land-area_1')) a.classList.add('land-area_visible');
+
+                }
+
+                if ( this._step > 73 && this._step <= 120 ) {   
+                    
+                    if (a.className.baseVal.includes('land-area_2')) a.classList.add('land-area_visible');
+
+                }    
+
+                if ( this._step > 120 ) {   
+                
+                    if (a.className.baseVal.includes('land-area_3')) a.classList.add('land-area_visible');
+
+                }  
+
+            }    
 
             this._dateElem.innerHTML = this._dates[this._step].date;
 
