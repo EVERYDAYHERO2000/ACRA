@@ -42,7 +42,7 @@ app.data.load(function(dataset, dates, codes){
             title : 'Favourites SSIC',
             visible : true,
             open : true,
-            control : 'radio',
+            control : 'checkbox',
             value : (function(ssic){
 
                 let filter = ssic._filter.groups;
@@ -68,7 +68,7 @@ app.data.load(function(dataset, dates, codes){
             type : 'group',
             title : 'Most popular SSIC',
             visible : false,
-            control : 'radio',
+            control : 'checkbox',
             value : (function(ssic){
 
                 let filter = ssic._filter.topSsic;
@@ -94,7 +94,7 @@ app.data.load(function(dataset, dates, codes){
             type : 'group',
             title : 'Manufacturing',
             visible : false,
-            control : 'radio',
+            control : 'checkbox',
             value : (function(ssic){
 
                 let filter = ssic._filter.section;

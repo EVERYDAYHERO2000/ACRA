@@ -38,7 +38,7 @@ export default class Sidebar {
                         <div class="color-select" data-item="${id}" style="background-color:#${color}" ></div>
                     </div>
                     <div class="sidebar__item-name">
-                        <input class="sidebar__item-input" type="text" placeholder="Enter SSIC code or part of it" />
+                        <input class="sidebar__item-input" type="text" placeholder="Enter SSIC code or part of it" autofocus />
                     </div>
                 </div>
                 <div class="sidebar__item-tools">
@@ -182,6 +182,7 @@ export default class Sidebar {
         let closeButton = null;
 
         let isMobile = (_this._browser.isMobile == 'mobile') ? 'mobile' : '';
+        
 
         container.innerHTML = this._tpl(this._query);
 
@@ -202,20 +203,61 @@ export default class Sidebar {
 
         }    
 
-
         container.addEventListener('keyup', function(e){
             
             if (e.target.tagName) {
 
-                e.target.value = e.target.value.replace(/[^\d]+/g, '');
+                let value = e.target.value = e.target.value.replace(/[^\d]+/g, '');
 
-                if (e.target.value.length > 2) {
+                
 
                     let id = e.target.closest('.sidebar__item ').getAttribute('data-index');
 
-                    //_this._query[id].value[0] = 
+                    let result = [];
 
-                }
+                    for (var s in _this._ssic.ssic) {
+
+                        
+                        let ssic = (function(s){
+
+                            let ssic = s
+
+                            for (var i = 0; i < 5; i++) {
+
+                                if (ssic.length < 5) ssic = '0' + ssic; 
+
+                            }
+
+                            return ssic;
+
+                        })(s)
+
+                        let regTest = new RegExp(`^${value}`);
+
+                        if (value && regTest.test(ssic)) {
+                            result.push(ssic);
+                        }    
+
+                    }
+
+                    _this._query[id].value = (result.length) ? result : ['00000'];
+
+                    if (result.length < 1) {
+
+                        e.target.classList.add('sidebar__item-input_error');
+
+                    } else {
+                        e.target.classList.remove('sidebar__item-input_error');
+                    }
+
+                    if (_this._keyUpTimer) clearTimeout(_this._keyUpTimer);
+
+                    _this._keyUpTimer = setTimeout(function(){
+                        _this._filter.setQuery(_this._query);
+                    },500);
+
+    
+                
 
             }
 
@@ -381,7 +423,7 @@ export default class Sidebar {
                         r.classList.remove('tool_disable');
 
                     }
-
+                    
                     } else {
 
                         if (state == 'on') {
@@ -389,9 +431,26 @@ export default class Sidebar {
                         } else {
                             e.target.setAttribute('data-visible', 'on');
                         }
+                        
+                        let allRadioInside = parentItem.querySelectorAll('[data-ingroup][data-visible]');
+
+                        
+
+                        for (var r of allRadioInside) {
+
+                            if (state == 'off') {
+                                r.setAttribute('data-visible', 'on');
+
+                                r.classList.remove('tool_disable');
+                            } else {
+                                r.setAttribute('data-visible', 'off');
+                                r.classList.add('tool_disable');
+                            }   
+                        }
+                        
 
                     }
-
+                    
                 }
 
                 let allValues = document.querySelectorAll('.tool_visible');
@@ -438,7 +497,8 @@ export default class Sidebar {
 
         document.addEventListener('mousemove',function(e){
 
-            if (!isMobile){
+            if (!isMobile.length){
+
                 if (e.pageY < document.body.clientHeight - document.querySelector('#graph').clientHeight) {
                     
                     document.querySelector(_this._id).style['pointer-events'] = 'all';
