@@ -196,6 +196,23 @@ export default class Sidebar {
         }    
 
 
+        container.addEventListener('keyup', function(e){
+            
+            if (e.target.tagName) {
+
+                e.target.value = e.target.value.replace(/[^\d]+/g, '');
+
+                if (e.target.value.length > 2) {
+
+                    console.log(e.target.closest('.sidebar__item ').getAttribute('data-index'))
+
+                }
+
+            }
+
+        });
+
+
         container.addEventListener('click', function(e){
 
             if (isMobile) {

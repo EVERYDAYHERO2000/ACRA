@@ -112,6 +112,7 @@ app.data.load(function(dataset, dates, codes){
 
                     }
 
+
                     result.push({
                         type: 'item',
                         control : 'checkbox',
@@ -127,6 +128,7 @@ app.data.load(function(dataset, dates, codes){
             })(app.ssic)
         }
     ];
+
 
     app.filter.prepareQuery(defaultQuery);    
 

@@ -304,6 +304,9 @@
     font-size: 13px;
     width: 100%;
     color: rgb(255, 242, 129);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
 }
 
 .sidebar__item-input:not(:placeholder-shown) {
