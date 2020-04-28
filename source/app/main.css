@@ -3,6 +3,7 @@
 @import "graph.css" all;
 @import "sidebar.css" all;
 @import "map-svg.css" all;
+@import "intro.css" all;
 
 body {
     margin:0;

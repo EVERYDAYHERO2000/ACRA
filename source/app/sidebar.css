@@ -11,7 +11,7 @@
     transition: all .3s ease;
     color: rgba(255,255,255,0.85);
     font-size: 13px;
-}
+}   
 
 .sidebar__inner {
     overflow: scroll;
@@ -24,8 +24,13 @@
     background-color: rgba(9, 12, 15, .8);
     transition: all .3s ease;
 }
- 
 
+@media screen and (max-width: 500px) {
+    #sidebar:hover, #sidebar.visible {
+        background-color: rgba(9, 12, 15, .9);
+    }    
+} 
+ 
 .sidebar__item {
     padding: 0 10px;
     border-bottom: 1px solid rgba(255,255,255,0);
@@ -44,7 +49,7 @@
 }
 
 .sidebar__item[data-open="on"] .sidebar__item-body {
-    max-height: 10000px;
+    max-height: 1000px;
     height: auto;
     transition: all .2s;
 }
@@ -332,4 +337,8 @@
 
 .sidebar__item-input:focus {
     outline: none;
+}
+
+.sidebar__value.hidden .sidebar__item-hint {
+    display: none;
 }

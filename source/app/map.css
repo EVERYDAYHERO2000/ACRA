@@ -38,6 +38,10 @@
     user-select: none;
 }
 
+.leaflet-disabled {
+    background: none;
+}
+
 .leaflet-bar a.leaflet-control-play {
     font-size: 24px;
     padding-top: 15px;

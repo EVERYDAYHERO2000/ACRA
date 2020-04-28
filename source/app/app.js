@@ -23,9 +23,25 @@ const app = {
 app.map.create({
     lat: 1.358556385,
     lon: 103.795598745,
-    zoom: 12,
+    zoom: (app.browser.isMobile == 'mobile') ? 10 : 12,
     controls: true
 });
+
+document.querySelector('#run').addEventListener('click', function(){
+
+    document.querySelector('#intro').classList.add('intro_hide')
+
+    setTimeout(function(){
+        document.querySelector('#intro').remove();  
+        runapp();
+    },500)
+    
+
+});
+
+function runapp(){
+
+  
 
 app.data.load(function(dataset, dates, codes){
 
@@ -146,6 +162,8 @@ app.data.load(function(dataset, dates, codes){
 
 
 });
+
+}
 
 window.app = app;
 

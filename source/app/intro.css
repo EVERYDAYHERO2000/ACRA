@@ -1,0 +1,108 @@
+#intro {
+    height: 100vh;
+    height: calc(var(--vh, 1vh)*100);
+    width: 100%;
+    position: absolute;
+    top:0;
+    left:0;
+    z-index: 200000;
+    color: #fff;
+    overflow: hidden;
+    opacity: 1;
+    transition: all .5s ease;
+}
+
+.intro_hide {
+    opacity: 0!important;
+    transition: all .5s ease!important;
+}
+
+.intro__inner {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top:0;
+    left:0;
+    max-width: 970px;
+    height: 100vh;
+    padding: 150px;
+    box-sizing: border-box;
+}
+
+@media screen and (max-width: 500px) {
+    .intro__inner {
+       padding: 90px 20px 20px 20px; 
+    }    
+}    
+
+.intro__background {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top:0;
+    left:0;
+    background: url(../assets/merlion.png);
+    background-position: bottom right;
+    background-repeat: no-repeat;
+    filter: brightness(.5);
+    opacity: 0;
+    animation: merlion 15s 1s ease-out forwards;
+    transform: scale(1) translateX(30px);
+}
+
+@keyframes merlion {
+    0% {
+        transform: scale(1) translateX(30px);
+    }
+
+    30% {
+        opacity: .9;
+    }
+
+    100% {
+        transform: scale(1.2) translateX(0);
+        opacity: 1;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .intro__background {
+        background-size: 100%;
+    }    
+}    
+
+.intro__inner h1 {
+    font-size: 64px;
+    font-weight: 700;
+    margin: 10px 0;
+    color: #ffe859;
+}
+
+.intro__inner p {
+    font-size: 24px;
+    line-height: 37px;
+}
+
+#run {
+    cursor: pointer;
+    font-size: 24px;
+    padding: 10px 15px;
+    border: 2px solid #fff;
+    display: inline-block;
+    margin-top: 20px;
+}
+
+@media screen and (max-width: 500px) {  
+    .intro__inner h1 {  
+        font-size: 42px;
+    }
+
+    .intro__inner p {
+        font-size: 16px;
+        line-height: 30px;
+    }
+
+    #run {
+        font-size: 16px;
+    }    
+}    
