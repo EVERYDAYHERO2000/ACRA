@@ -42,6 +42,7 @@ export default class Sidebar {
                     </div>
                 </div>
                 <div class="sidebar__item-tools">
+                    <a title="Free SSIC Code Search" class="tool tool_information" href="https://osome.com/sg/ssic-code-search-tool/" target="_blank"></a>
                     <div title="Remove Item" class="tool tool_remove"  data-type="item"></div>
                     <div title="Show/Hide Item" class="tool tool_visible" data-type="item" data-control="checkbox" data-visible="on"></div>
                 </div> 

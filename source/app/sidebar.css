@@ -184,6 +184,13 @@
     background-position: 0px -40px;
 }
 
+.tool_information {
+    background-image: url(../assets/icons.svg);
+    background-repeat: no-repeat;
+    background-position: 0px 0px;
+    background-position: 0px -80px;
+}
+
 .tool_disable {
     opacity: 0!important;
     pointer-events: none;
