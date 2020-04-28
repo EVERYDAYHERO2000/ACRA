@@ -132,7 +132,7 @@ app.data.load(function(dataset, dates, codes){
 
     app.filter.prepareQuery(defaultQuery);    
 
-    app.sidebar.setFilter(app.filter).setData(dataset).create(defaultQuery);
+    app.sidebar.setSsic(app.ssic).setFilter(app.filter).setData(dataset).create(defaultQuery);
 
     app.filter.setMap(app.map).setGraph(app.graph);
 

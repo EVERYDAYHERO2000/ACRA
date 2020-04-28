@@ -152,6 +152,13 @@ export default class Sidebar {
         return this;
     }
 
+    setSsic (ssic) {
+
+        this._ssic = ssic;
+
+        return this;
+    }
+
     setFilter (filter) {
 
         this._filter = filter;
@@ -204,7 +211,9 @@ export default class Sidebar {
 
                 if (e.target.value.length > 2) {
 
-                    console.log(e.target.closest('.sidebar__item ').getAttribute('data-index'))
+                    let id = e.target.closest('.sidebar__item ').getAttribute('data-index');
+
+                    //_this._query[id].value[0] = 
 
                 }
 

@@ -12,6 +12,11 @@ body {
     font-size: 16px;
     overflow: hidden;
     background: #121519;
+}
+
+#app {
+    height: 100vh;
     height: calc(var(--vh, 1vh)*100);
+    position: absolute;
 }
 
