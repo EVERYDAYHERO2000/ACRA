@@ -16,6 +16,7 @@
 .sidebar__inner {
     overflow: scroll;
     height: 100vh;
+    overflow-x: hidden;
 }
 
 #sidebar:hover, #sidebar.visible {
@@ -36,6 +37,10 @@
     height: auto;
     overflow: hidden;
     transition: all .2s;
+}
+
+.sidebar__item-name {
+    user-select: none;
 }
 
 .sidebar__item[data-open="on"] .sidebar__item-body {
@@ -146,23 +151,38 @@
 #sidebar:hover .sidebar__item-value-name, #sidebar:hover .sidebar__item-name {
     opacity: 1!important;
     transition: all .2s;
-}    
+} 
 
-.tool {
-    cursor: pointer;
+.sidebar__item-tools {
+    display: flex;
+    flex-wrap: nowrap;
 }
 
-.tool_visible {
+.tool {
     min-width: 20px;
     min-height: 20px;
     max-width: 20px;
     max-height: 20px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.tool:last-child {
+    margin-right: 0;
+}
+
+.tool_visible {
     background-image: url(../assets/icons.svg);
     background-repeat: no-repeat;
     background-position: 0px 0px;
 }
 
-
+.tool_remove {
+    background-image: url(../assets/icons.svg);
+    background-repeat: no-repeat;
+    background-position: 0px 0px;
+    background-position: 0px -40px;
+}
 
 .tool_disable {
     opacity: 0!important;
@@ -249,4 +269,47 @@
 .sidebar__item-hint {
     color: rgb(255, 242, 129);
     font-family: monospace;
+}
+
+.sidebar__custom-filter {
+    padding: 10px;
+    text-align: center;
+    user-select: none;
+    background-color: transparent;
+    cursor: pointer;
+    border-bottom: none!important;
+}
+
+.sidebar__custom-filter:hover {
+    background-color: rgba(255,255,255,.1);
+}
+
+.sidebar__custom-filter:before {
+    content: '+';
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+    transform: translateY(1px);
+    display: inline-block;
+    line-height: 1;
+    font-size: 16px;
+}
+
+.sidebar__custom-filter span {
+    pointer-events: none;
+}
+
+.sidebar__item-input {
+    background: transparent;
+    border: none;
+    font-size: 13px;
+    width: 100%;
+    color: rgb(255, 242, 129);
+}
+
+.sidebar__item-input:not(:placeholder-shown) {
+    font-family: monospace;
+}
+
+.sidebar__item-input:focus {
+    outline: none;
 }

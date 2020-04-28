@@ -83,7 +83,7 @@ export default class Filter {
   
                             result.push({
                               group : group,
-                              colorIndex : uery[i].colorIndex,
+                              colorIndex : query[i].colorIndex,
                               dates : {}
                             })
   

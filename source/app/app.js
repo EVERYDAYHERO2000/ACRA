@@ -5,8 +5,10 @@ import Browser from "./browser.js";
 import Sidebar from "./sidebar.js";
 import Ssic from "./ssic.js";
 import Filter from "./filter.js";
+import setWindowHeight from "./window-heiaght.js";
 
 (function(){
+setWindowHeight();
 
 const app = {
     map : new Map('map'),
