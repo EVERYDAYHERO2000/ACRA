@@ -89,3 +89,7 @@
     pointer-events: none;
 }
 
+.leaflet-tile-pane {
+    transition: all .3s;
+}
+

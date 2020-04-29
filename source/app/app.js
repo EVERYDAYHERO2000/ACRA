@@ -29,7 +29,8 @@ app.map.create({
 
 document.querySelector('#run').addEventListener('click', function(){
 
-    document.querySelector('#intro').classList.add('intro_hide')
+    document.querySelector('#intro').classList.add('intro_hide');
+    document.querySelector('#app').classList.remove('state_intro');
 
     setTimeout(function(){
         document.querySelector('#intro').remove();  
