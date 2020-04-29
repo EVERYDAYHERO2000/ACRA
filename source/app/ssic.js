@@ -56,12 +56,12 @@ export default class Ssic {
           {
             name : 'Restaurants and cafes',
             value : ['56111', '56112', '56121', '56122', '56123', '56130', '56140', '56201', '56202', '55101'],
-            colorIndex : 921
+            colorIndex : 283
           },
           {
             name : 'Financial and Insurance',
             value : ['64110', '64120', '64130', '64140', '64150', '64160', '64190', '64201', '64202','64300','64910','64921','64922','64923','64924','64925','64929','64991','64992','64993','64994','64995','64999'],
-            colorIndex : 624
+            colorIndex : 542
           },
           {
             name : 'Shipping and shipbuilding',
@@ -71,7 +71,7 @@ export default class Ssic {
           {
             name : 'Technology company',
             value : ['62011','62012','62013','62014','62021','62022','62023','62090','63111','63112','63119','62019','62090','63120'],
-            colorIndex : 1000
+            colorIndex : 764
           }
 
         ]
