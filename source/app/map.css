@@ -14,6 +14,8 @@
     margin: 4px;
     border-radius: 3px;
     font-size: 11px;
+    word-break: keep-all;
+    white-space: nowrap;
 }
 
 .leaflet-control-attribution a {
@@ -91,5 +93,10 @@
 
 .leaflet-tile-pane {
     transition: all .3s;
+}
+
+.leaflet-bar a.leaflet-disabled {
+    background: none;
+    opacity: .5;
 }
 

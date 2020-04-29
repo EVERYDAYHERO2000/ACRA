@@ -41,7 +41,9 @@ export default class Map {
         }).addTo(this._map);
 
         this._tileLayer = L.tileLayer(this._tileUrl,{ 
-            attribution: '<a href="https://osome.com/">osome</a> | &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            attribution: '<a target="_blank" href="https://osome.com/">osome</a> | &copy; <a target="_blank" href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors | About <a target="_blank" href="https://www.singstat.gov.sg/standards/standards-and-classifications/ssic">SSIC</a> | <a target="_blank" href="https://osome.com/sg/ssic-code-search-tool/">Free SSIC Code Search</a>',
+            maxZoom: 16,
+            minZoom: 9
         });
         this._canvasOverlay = L.canvasOverlay();
 
