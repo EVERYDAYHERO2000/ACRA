@@ -242,12 +242,14 @@ export default class Map {
                     if (this._historyPlaces[i].type == 'Point') {
         
                         let point = [ this._historyPlaces[i].geom[1], this._historyPlaces[i].geom[0] ];
+                        let description = (this._historyPlaces[i].description) ? `<h3>${this._historyPlaces[i].name}</h3>` + this._historyPlaces[i].description : `<h3>${this._historyPlaces[i].name}</h3>`;
+
                         let marker = new L.Marker(point, {
                             icon: new L.DivIcon({
                                 className: 'place-marker',
                                 html: '<div class="place-marker__inner"></div>'
                             })
-                        }).bindPopup(``).addTo(this._places);
+                        }).bindPopup(`${description}`).addTo(this._places);
         
                         this._places._length++
 
@@ -265,21 +267,25 @@ export default class Map {
             if (this._places._length){  
 
                 for (var i = 0; i < this._historyPlaces.length; i++){
-                    let marker = document.querySelector(`.place-marker[data-step="${this._historyPlaces[i].dateIndex}"]`);  
+                    let markers = document.querySelectorAll(`.place-marker[data-step="${this._historyPlaces[i].dateIndex}"]`);  
 
-                    if (document.querySelector('#history').getAttribute('data-visible') == 'on'){
+                    for (var marker of markers){
 
-                        if ( this._historyPlaces[i].dateIndex <= this._step ) {
-                            if (marker) marker.classList.add('place-marker_visible');
+                        if (document.querySelector('#history').getAttribute('data-visible') == 'on'){
 
+                            if ( +this._historyPlaces[i].dateIndex <= this._step ) {
+                                if (marker) marker.classList.add('place-marker_visible');
+
+                            } else {
+                                if (marker) marker.classList.remove('place-marker_visible'); 
+
+                            }  
+                        
                         } else {
+
                             if (marker) marker.classList.remove('place-marker_visible'); 
 
-                        }  
-                    
-                    } else {
-
-                        if (marker) marker.classList.remove('place-marker_visible'); 
+                        }
 
                     }
                 }    
