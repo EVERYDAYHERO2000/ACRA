@@ -79,6 +79,7 @@
   .f-horizontal {
     pointer-events: all!important;
     cursor: pointer;
+    position: absolute;
   }
 
   .history-point {
@@ -101,7 +102,7 @@
   }  
 
   .history-group {
-    position: absolute;
+    position: fixed;
     display: flex;
     opacity: 1;
     flex-direction: column;

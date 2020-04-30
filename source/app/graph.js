@@ -171,7 +171,7 @@ export default class Graph {
 
           document.querySelector('#graph').addEventListener('click', function(e){
 
-              if (e.target.className.includes('history-point')) {
+              if (e.target.localName == 'div' && e.target.className.includes('history-point')) {
 
                 let id = e.target.getAttribute('data-id');
 

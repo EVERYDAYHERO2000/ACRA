@@ -57,7 +57,7 @@ export default class Sidebar {
            for (var i = 0; i < query.length; i++) {
 
               let color = (query[i].colorIndex) ? _this._colors.hex[ query[i].colorIndex ] : null;  
-              let colorSelect = (color) ? `<div class="color-select" data-item="${query[i].id}" style="background-color:#${color}" ></div>` : `${query[i].title[0]}`;  
+              let colorSelect = (color) ? `<div class="color-select" data-item="${query[i].id}" style="background-color:#${color}" ></div>` : (query[i].value == 'history') ? `<div class="color-select" style="background-color:#fff;pointer-events: none;" ></div>` : `${query[i].title[0]}`;  
               let groupClass = (query[i].type == 'group') ? 'sidebar__item_group' : '';
               let groupHidden = (query[i].visible) ? '' : 'hidden';
               let visible = (query[i].visible) ? 'on' : 'off';
