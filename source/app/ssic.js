@@ -61,12 +61,12 @@ export default class Ssic {
           {
             name : 'Financial and Insurance',
             value : ['64110', '64120', '64130', '64140', '64150', '64160', '64190', '64201', '64202','64300','64910','64921','64922','64923','64924','64925','64929','64991','64992','64993','64994','64995','64999'],
-            colorIndex : 542
+            colorIndex : 323
           },
           {
             name : 'Shipping and shipbuilding',
             value : ['30110','30120','50011','50012','50013','50014','50021','50022','50023','50024'],
-            colorIndex : 323
+            colorIndex : 542
           },
           {
             name : 'Technology company',

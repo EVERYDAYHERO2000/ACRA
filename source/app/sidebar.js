@@ -62,6 +62,7 @@ export default class Sidebar {
               let groupHidden = (query[i].visible) ? '' : 'hidden';
               let visible = (query[i].visible) ? 'on' : 'off';
 
+              let history = (query[i].value == 'history') ? 'id="history"' : ''
 
               let open = (query[i].type == 'group') ? (query[i].open) ? `data-open="on"` : `data-open="off"` : ''; 
 
@@ -129,7 +130,7 @@ export default class Sidebar {
                         <div class="sidebar__item-name">${query[i].title}</div>
                     </div>
                     <div class="sidebar__item-tools">
-                        <div title="Show/Hide Item" class="tool tool_visible ${groupHidden}" data-type="${query[i].type}" data-control="${query[i].control}" data-visible="${visible}"></div>
+                        <div ${history} title="Show/Hide Item" class="tool tool_visible ${groupHidden}" data-type="${query[i].type}" data-control="${query[i].control}" data-visible="${visible}"></div>
                     </div> 
                 </div>
                 <div class="sidebar__item-body">

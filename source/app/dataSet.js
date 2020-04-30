@@ -1,4 +1,5 @@
 import Loader from "./loader.js";
+import historyPlaces from "./places.js";
 
 export default class DataSet {
 
@@ -112,7 +113,9 @@ export default class DataSet {
 
             _this.data = temp;
 
-            callback(temp, _this.dates, _this.codes);
+
+
+            callback(temp, _this.dates, _this.codes, historyPlaces(_this.dates));
 
         });
 

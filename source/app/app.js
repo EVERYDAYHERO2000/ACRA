@@ -44,7 +44,7 @@ function runapp(){
 
   
 
-app.data.load(function(dataset, dates, codes){
+app.data.load(function(dataset, dates, codes, historyPlaces){
 
     let defaultQuery = [
         {
@@ -157,7 +157,7 @@ app.data.load(function(dataset, dates, codes){
     
     app.map.setSsic(app.ssic).setGraph(app.graph);
 
-    app.map.setData(dataset, codes, dates);
+    app.map.setData(dataset, codes, dates, historyPlaces);
 
     app.filter.setData(dataset, codes, dates).setQuery(defaultQuery);
 

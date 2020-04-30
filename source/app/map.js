@@ -5,6 +5,7 @@ import Browser from "./browser.js";
 import Loader from "./loader.js";
 import MapSvg from "./map-svg.js";
 
+
 export default class Map {
 
     constructor(id){
@@ -90,6 +91,11 @@ export default class Map {
         
         _this._svgMap._image = svg;
 
+        this._places = L.layerGroup().addTo(this._map);
+        this._places._length = 0;
+        
+
+
         this._dateElem = document.createElement('div');
         this._dateElem.classList.add('date-timer');
         this._dateElem.innerHTML = '';
@@ -150,11 +156,12 @@ export default class Map {
         return this;
     }
 
-    setData (data, codes, dates) {
+    setData (data, codes, dates, historyPlaces) {
 
         this._data = data;
         this._dates = dates;
         this._codes = codes;
+        this._historyPlaces = historyPlaces;
 
         let keys = []; 
         for (var k in dates) {
@@ -222,12 +229,62 @@ export default class Map {
 
         this._verts = [];
         this._vertsLength = 0;
-        this._step = step || this._maxStep;
+        this._step = step || this._step || this._maxStep;
 
         const _this = this;
 
         if (this._data){
 
+            if (!this._places._length){    
+
+                for (var i = 0; i < this._historyPlaces.length; i++){
+
+                    if (this._historyPlaces[i].type == 'Point') {
+        
+                        let point = [ this._historyPlaces[i].geom[1], this._historyPlaces[i].geom[0] ];
+                        let marker = new L.Marker(point, {
+                            icon: new L.DivIcon({
+                                className: 'place-marker',
+                                html: '<div class="place-marker__inner"></div>'
+                            })
+                        }).bindPopup(``).addTo(this._places);
+        
+                        this._places._length++
+
+                        marker._icon.setAttribute('data-date', this._historyPlaces[i].date);
+                        marker._icon.setAttribute('data-step', this._historyPlaces[i].dateIndex);    
+
+                    }
+        
+                }
+            
+            }  
+
+            
+
+            if (this._places._length){  
+
+                for (var i = 0; i < this._historyPlaces.length; i++){
+                    let marker = document.querySelector(`.place-marker[data-step="${this._historyPlaces[i].dateIndex}"]`);  
+
+                    if (document.querySelector('#history').getAttribute('data-visible') == 'on'){
+
+                        if ( this._historyPlaces[i].dateIndex <= this._step ) {
+                            if (marker) marker.classList.add('place-marker_visible');
+
+                        } else {
+                            if (marker) marker.classList.remove('place-marker_visible'); 
+
+                        }  
+                    
+                    } else {
+
+                        if (marker) marker.classList.remove('place-marker_visible'); 
+
+                    }
+                }    
+
+            }
 
             let landsArea = this._svgMap._image.querySelectorAll('.land-area');
 
