@@ -141,16 +141,27 @@
 
 .leaflet-popup-content-wrapper {
     border-radius: 5px;
+    overflow: hidden;
 }
 
 .place-cover {
-    width:100%;
+    width: calc(100% + 40px);
     min-width: 250px;
     height: 200px;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    margin-top: 20px;
+    margin: -14px -20px 0 -20px;
+}
+
+.leaflet-container a.leaflet-popup-close-button {
+    color:rgba(0,0,0,.5);
+    opacity: 1;
+}
+
+.leaflet-container a.leaflet-popup-close-button:hover {
+    color: #000;
+    opacity: 1;
 }
 
 .leaflet-touch .leaflet-bar {
