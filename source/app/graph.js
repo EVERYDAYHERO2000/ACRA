@@ -14,6 +14,13 @@ export default class Graph {
       return this;
     }
 
+    setHistory (history) {
+
+      this._history = history;
+
+      return this;
+    }
+
     setDates (dates) {
 
       this._rawDates = dates;
@@ -116,6 +123,28 @@ export default class Graph {
 
                   }
 
+                  if ( document.querySelector('#history').getAttribute('data-visible') == 'on' ) {
+                    for (var i = 0; i < _this._history.length; i++) {
+
+                      if (_this._history[i].dateIndex == count) {
+
+                        if (!f.querySelector('.history-group')) {
+                          let historyGroup = document.createElement('div');
+                          historyGroup.classList.add('history-group');
+                          f.appendChild(historyGroup);
+                        } 
+
+                        let historyPoint = document.createElement('div');
+                        historyPoint.classList.add('history-point');
+                        historyPoint.setAttribute('data-id', _this._history[i].id);
+                        historyPoint.setAttribute('title', _this._history[i].className);
+                        f.querySelector('.history-group').appendChild(historyPoint);
+
+                      }
+
+                    }
+                  }
+
                   count++
                 }
 
@@ -141,6 +170,22 @@ export default class Graph {
           });  
 
           document.querySelector('#graph').addEventListener('click', function(e){
+
+              if (e.target.className.includes('history-point')) {
+
+                let id = e.target.getAttribute('data-id');
+
+                for (var m in _this._map._places._layers) {
+
+                  if (_this._map._places._layers[m]._icon.getAttribute('data-id') == id) {
+
+                    _this._map._places._layers[m].openPopup();
+
+                  }
+
+                }
+
+              }
              
               if (e.target.classList.value.includes('f-horizontal')) {
 

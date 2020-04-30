@@ -1,6 +1,6 @@
 export default function (dates) {
 
-const places = [
+const history = [
     { 
         "name": "Formula",
         "icon": "car",
@@ -178,20 +178,22 @@ const places = [
     }
 ]
     
-    for (var i = 0; i < places.length; i++) {
+    for (var i = 0; i < history.length; i++) {
 
         for(var d in dates) {
 
-            if (places[i].date == dates[d].date) { 
-                places[i].dateIndex = dates[d].dateIndex
+            if (history[i].date == dates[d].date) { 
+                history[i].dateIndex = dates[d].dateIndex
             }    
 
         }
 
-        if (!places[i].dateIndex) places[i].dateIndex = 0;
+        if (!history[i].dateIndex) history[i].dateIndex = 0;
+
+        history[i].id = i;
 
     }
 
-    return places;
+    return history;
 
 }

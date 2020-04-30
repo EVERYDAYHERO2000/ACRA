@@ -1,5 +1,5 @@
 import Loader from "./loader.js";
-import historyPlaces from "./places.js";
+import historyPlaces from "./history.js";
 
 export default class DataSet {
 

@@ -254,7 +254,8 @@ export default class Map {
                         this._places._length++
 
                         marker._icon.setAttribute('data-date', this._historyPlaces[i].date);
-                        marker._icon.setAttribute('data-step', this._historyPlaces[i].dateIndex);    
+                        marker._icon.setAttribute('data-step', this._historyPlaces[i].dateIndex); 
+                        marker._icon.setAttribute('data-id', this._historyPlaces[i].id);    
 
                     }
         

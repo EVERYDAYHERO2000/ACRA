@@ -273,6 +273,39 @@ export default class Sidebar {
                 closeButton.classList.add('visible');
             }  
 
+            /*
+            //change history visibility on graph
+            if (e.target.id == 'history') {
+
+                let markers = document.querySelectorAll('.history-group');
+
+                
+
+                if (e.target.getAttribute('data-visible') == 'on') {
+
+                    console.log('on')
+                    
+                    for (var m of markers) {
+
+                        m.classList.add('history-group_hidden');
+
+                    }
+
+                } else {
+
+                    console.log('off')
+
+                    for (var m of markers) {
+
+                        m.classList.remove('history-group_hidden');
+
+                    }
+
+                }
+
+            }
+            */
+
             //add filter 
             if (e.target.className.includes('sidebar__custom-filter')) {
 

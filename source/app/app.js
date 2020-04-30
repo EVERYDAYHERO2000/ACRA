@@ -153,7 +153,7 @@ app.data.load(function(dataset, dates, codes, historyPlaces){
 
     app.filter.setMap(app.map).setGraph(app.graph);
 
-    app.graph.setMap(app.map).setDates(dates);
+    app.graph.setMap(app.map).setDates(dates).setHistory(historyPlaces);
     
     app.map.setSsic(app.ssic).setGraph(app.graph);
 
