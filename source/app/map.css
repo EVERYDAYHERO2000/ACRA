@@ -153,5 +153,8 @@
     margin-top: 20px;
 }
 
+.leaflet-touch .leaflet-bar {
+    border:none;
+}
 
 
