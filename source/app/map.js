@@ -179,10 +179,8 @@ export default class Map {
     play (fromStep) {
 
         const _this = this;
-        const maxStep = this._maxStep;
+        const maxStep = +this._maxStep;
         const speed = 100;
-
-        
 
         if ( _this._step >= maxStep ) _this._step = this._minStep;
 
@@ -227,9 +225,13 @@ export default class Map {
 
     drawData (step) {
 
+        
+
         this._verts = [];
         this._vertsLength = 0;
-        this._step = step || this._step || this._maxStep;
+        this._step = +(step || this._step || this._maxStep);
+        this._step = (this._step > this._maxStep ) ? this._maxStep : this._step;
+        
 
         const _this = this;
 
@@ -318,6 +320,8 @@ export default class Map {
                 }  
 
             }    
+
+            
 
             this._dateElem.innerHTML = this._dates[this._step].date;
 

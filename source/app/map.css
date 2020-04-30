@@ -155,13 +155,22 @@
 }
 
 .leaflet-container a.leaflet-popup-close-button {
-    color:rgba(0,0,0,.5);
-    opacity: 1;
+    background-image: url(../assets/icons.svg);
+    width: 20px;
+    height: 20px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+    color: transparent;
+    background-position: 0px -40px;
+    background-position: center;
+    transform: translate(-3px, 3px) scale(0.8);
+    user-select: none;
+    transform-origin: center;
 }
 
 .leaflet-container a.leaflet-popup-close-button:hover {
-    color: #000;
-    opacity: 1;
+    color: transparent;
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 .leaflet-touch .leaflet-bar {
