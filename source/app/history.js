@@ -2,7 +2,7 @@ export default function (dates) {
 
 const history = [
     { 
-        "name": "Formula",
+        "name": "Marina Bay Street Circuit",
         "icon": "car",
         "type": "Point", 
         "image": "pic_27.jpg",

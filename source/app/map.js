@@ -242,7 +242,7 @@ export default class Map {
                     if (this._historyPlaces[i].type == 'Point') {
         
                         let point = [ this._historyPlaces[i].geom[1], this._historyPlaces[i].geom[0] ];
-                        let description = (this._historyPlaces[i].description) ? `<div class="place-cover" style="background-image:url(../source/assets/history/${this._historyPlaces[i].image})"></div><h3>${this._historyPlaces[i].name}</h3>` + this._historyPlaces[i].description : `<div class="place-cover" style="background-image:url(../source/assets/history/${this._historyPlaces[i].image})"></div><h3>${this._historyPlaces[i].name}</h3>`;
+                        let description = (this._historyPlaces[i].description) ? `<div class="place-cover" style="background-image:url(source/assets/history/${this._historyPlaces[i].image})"></div><h3>${this._historyPlaces[i].name}</h3>` + this._historyPlaces[i].description : `<div class="place-cover" style="background-image:url(source/assets/history/${this._historyPlaces[i].image})"></div><h3>${this._historyPlaces[i].name}</h3>`;
 
                         let marker = new L.Marker(point, {
                             icon: new L.DivIcon({
