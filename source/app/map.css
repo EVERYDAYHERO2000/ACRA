@@ -143,5 +143,15 @@
     border-radius: 5px;
 }
 
+.place-cover {
+    width:100%;
+    min-width: 250px;
+    height: 200px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-top: 20px;
+}
+
 
 
