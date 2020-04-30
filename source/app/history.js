@@ -6,6 +6,9 @@ const history = [
         "icon": "car",
         "type": "Point", 
         "image": "pic_27.jpg",
+        "description" : `
+        <p>The Marina Bay Street Circuit (otherwise known as the Singapore Street Circuit) is a street circuit around Marina Bay, Singapore, encompassing the planning areas of Downtown Core (Turns 4 to 23) and Kallang (Turns 1 to 3). It is the venue for the Singapore Grand Prix. The track is 5.063 km (3.146 mi) long in a harbourside location similar in style to the Circuit de Monaco and the Valencia Street Circuit.</p>
+        <p>The circuit is designed by KBR, Inc., a modification of the original one first proposed by Hermann Tilke. The circuit has a FIA Grade 1 license. The circuit holds a unique record of having at least one safety car appearance in every race to date. There has been a total of 21 safety car deployments in twelve races.</p>`,
         "date": 2008, 
         "geom": [103.86435985565186, 1.2900335273724657] 
     }, { 
@@ -13,6 +16,7 @@ const history = [
         "icon": "building",
         "name": "Osome Pte. Ltd.", 
         "image": "pic_26.jpeg", 
+        "description":`<p>We combine our experience and personal care with the efficiency of artificial intelligence. We manage your incorporation, secretary & accounting in Singapore online. Save time, free your mind and focus on your business with OSOME!</p>`,
         "date": 2017, 
         "geom": [103.8493287563324, 1.2801064870177117] 
     }, { 
@@ -20,6 +24,8 @@ const history = [
         "icon": "building",
         "name": "Marina Bay Sands",
         "image": "pic_25.jpg", 
+        "description" : `
+        <p>Marina Bay Sands is an integrated resort fronting Marina Bay in Singapore, owned by the Las Vegas Sands corporation. At its opening in 2010, it was billed as the world's most expensive standalone casino property at S$8 billion ($5.88 billion USD), including the land cost. The resort includes a 2,561-room hotel, a 120,000-square-metre (1,300,000 sq ft) convention-exhibition centre, the 74,000-square-metre (800,000 sq ft) The Shoppes at Marina Bay Sands mall, a museum, two large theatres, "celebrity chef" restaurants, two floating Crystal Pavilions, art-science exhibits, and the world's largest atrium casino with 500 tables and 1,600 slot machines. The complex is topped by a 340-metre-long (1,120 ft) SkyPark with a capacity of 3,900 people and a 150 m (490 ft) infinity swimming pool, set on top of the world's largest public cantilevered platform, which overhangs the north tower by 67 m (220 ft). The 20-hectare resort was designed by Moshe Safdie architects.</p>`,
         "date": 2010, 
         "geom": [103.86075496673584, 1.2838123720725012] 
     }, { 
@@ -27,18 +33,22 @@ const history = [
         "icon": "building",
         "name": "ArtScience Museum", 
         "image": "pic_24.jpg",
+        "description": `
+        <p>ArtScience Museum is a museum located within the integrated resort of Marina Bay Sands in the Downtown Core of the Central Area in Singapore. Opened on 17 February 2011 by Singapore's Prime Minister Lee Hsien Loong, it is the world's first ArtScience museum, featuring major exhibitions that blend art, science, culture and technology.</p>`,
         "date": 2011, 
         "geom": [103.85916709899902, 1.2861506701544758] 
     }, { 
         "type": "Point", 
         "icon": "garden",
-        "name": "Bay South, the largest of the three gardens", 
+        "name": "Gardens by the Bay", 
+        "description":`<p>The Gardens by the Bay is a nature park spanning 101 hectares (250 acres) in the Central Region of Singapore, adjacent to the Marina Reservoir. The park consists of three waterfront gardens: Bay South Garden (in Marina South), Bay East Garden (in Marina East) and Bay Central Garden (in Downtown Core and Kallang). The largest of the gardens is the Bay South Garden at 54 hectares (130 acres) designed by Grant Associates. Its Flower Dome is the largest glass greenhouse in the world.</p>`,
         "image": "pic_23.jpg",
         "date": 2012, 
         "geom": [103.8641881942749, 1.2819996532802704] 
     }, { 
         "type": "Point", 
         "name": "Esplanade", 
+        "description":`<p>Esplanade – Theatres on the Bay (also known as the Esplanade Theatres or simply The Esplanade) is a performing arts centre located in Downtown Core near the mouth of the Singapore River. Named after the nearby Esplanade Park, it consists of a concert hall which seats about 1,600 and a theatre with a capacity of about 2,000 for the performing arts.</p>`,
         "image": "pic_22.jpg",
         "date": 2005, 
         "geom": [103.85565876960754, 1.2897439222041431] 
@@ -46,6 +56,7 @@ const history = [
         "type": "Point", 
         "icon": "building",
         "name": "OCBC Centre", 
+        "description":`<p>OCBC Centre is a 197.7 m (649 ft), 52-storey skyscraper in Singapore. serving as the current headquarters of OCBC Bank, the building was completed in 1976 and was the tallest building in the country, and South East Asia, at that time. There are two extensions, OCBC Centre South and OCBC Centre East. There is an Executive Club on one of the higher floors of the building. OCBC Centre East has food and beverage outlets.</p>`,
         "image": "pic_21.jpg",
         "date": 1976, 
         "geom": [103.84904980659485, 1.2850351520704437] 
@@ -53,6 +64,7 @@ const history = [
         "type": "Point", 
         "icon": "building",
         "name": "Buddha Tooth Relic Temple and Museum", 
+        "description":`<p>The Buddha Tooth Relic Temple and Museum is a Buddhist temple and museum complex located in the Chinatown district of Singapore.</p>`,
         "image": "pic_20.jpg",
         "date": 2005, 
         "geom": [103.8442325592041, 1.2814740718519217] 
@@ -60,6 +72,7 @@ const history = [
         "type": "Point", 
         "icon": "building",
         "name": "One Raffles Place", 
+        "description":`<p>One Raffles Place, formerly Overseas Union Bank Centre or OUB Centre is one of the tallest skyscrapers in the city of Singapore. It was the tallest together with the UOB Plaza and Republic Plaza until the construction of Guoco Tower in 2016. The building sits at the city centre of Raffles Place.</p>`, 
         "image": "pic_19.jpg",
         "date": 1986, 
         "geom": [103.85105609893799, 1.284649011081671] 
@@ -67,6 +80,8 @@ const history = [
         "type": "Point", 
         "icon": "building",
         "name": "Singapore Land Tower", 
+        "description":`<p>Singapore Land Tower is a 48-storey 190 m (620 ft) skyscraper located in the central business district of Singapore. The tower is located at 50 Raffles Place, adjacent to Raffles Place MRT station. It is just 100 metres away from Boat Quay and Collyer Quay.</p>
+        <p>The Embassy of Germany is located on the 12th floor, Embassy of Ukraine is on the 16th floor and the Embassy of Colombia occupies the 30th floor of the building.</p>`,
         "image": "pic_18.jpg",
         "date": 1980, 
         "geom": [103.85200023651122, 1.2846811894996435] 
@@ -74,6 +89,7 @@ const history = [
         "type": "Point", 
         "icon": "building",
         "name": "Republic Plaza", 
+        "description": `<p>Republic Plaza is a skyscraper in Downtown Core, Singapore. It formerly shared the title of "tallest building" with the OUB Centre and UOB Plaza One, until the completion of Tanjong Pagar Centre in 2016. At a height of 280 meters, it was officially opened on 18 January 1998 and incorporates earthquake proof features despite the city being relatively far from earthquake zones.</p>`,
         "image": "pic_17.jpg",
         "date": 1996, 
         "geom": [103.85092735290527, 1.2829435543501144] 
@@ -81,6 +97,7 @@ const history = [
         "type": "Point", 
         "icon": "building",
         "name": "Treasury Building (now AXA Tower)", 
+        "description":`<p>Built in 1986 as Treasury Building, it has 52 stories and is one of the prominent buildings in the business district. The tower houses 16 double deck elevators supplied by Otis. Singapore's present Prime Minister, Lee Hsien Loong, once had his office in the building. The building was renamed to Temasek Tower (Chinese: 淡马锡大厦) when the Ministry of Finance relocated to The Treasury on High Street. Advertising agency BBDO Worldwide hosts its Asia Pacific Headquarters in there.</p>`,
         "image": "pic_16.jpg",
         "date": 1986, 
         "geom": [103.84721517562866, 1.2756819428547417] 
@@ -88,6 +105,7 @@ const history = [
         "type": "Point",
         "icon": "building",
         "name": "CPF Building", 
+        "description":`<p>The former CPF Building was a high-rise skyscraper located in the central business district of Singapore. The tower was located on 79 Robinson Road, in the Shenton Way and Tanjong Pagar zone. The building was near several other skyscrapers such as DBS Building Tower One, SIA Building and Capital Tower, which are all about 100 metres away from the building's former site.</p>`,
         "image": "pic_15.jpeg",
         "date": 1976, 
         "geom": [103.8479608297348, 1.2769851730180488] 
@@ -95,6 +113,7 @@ const history = [
         "type": "Point", 
         "icon": "building",
         "name": "DBS Tower", 
+        "description":`<p>The DBS Tower One was finished in 1975, together with a wave of brutalist-style buildings, that dominated the 1950s to 1970s period. It was designed by Architects Team 3. Firms involved in the development of the building included DBS Land Limited, Obayashi-Gumi, Ltd., Steen Consultants Private Limited, Liu Cheng Consulting Engineers, Davis Langdon & Seah Philippines Inc., and Mitsubishi Elevator and Escalator.</p>`,
         "image": "pic_14.jpg", 
         "date": 1975, 
         "geom": [103.84873867034912, 1.277451761434428] 
@@ -122,6 +141,7 @@ const history = [
         "name":"Changi Airport",
         "icon": "airport",
         "date":1987,
+        "description":`<p>Singapore Changi Airport, commonly known as Changi Airport (IATA: SIN, ICAO: WSSS), is a major civilian airport that serves Singapore, and is one of the largest transportation hubs in Asia. It is currently rated the World's Best Airport by Skytrax for the seventh consecutive year since 2013.</p>`,
         "image":"pic_11.jpg",
         "geom":[103.98834228515625,1.354625368768736],
         "type":"Point"
@@ -130,6 +150,7 @@ const history = [
         "icon": "port",
         "date": 1971,
         "image": "pic_10.jpg",
+        "description":`<p>The Sembawang area in the early twentieth century was the site of the Nee Soon Rubber estate. During the colonial times, Sembawang was home to a major British naval base, its construction of which began in 1928 and was completed in 1938. The base included dockyards, wharves and workshops, as well as supporting administrative, residential and commercial areas. The Naval Base has since been handed over to the Singapore government, which in 1968 converted it into a commercial dockyard (as Sembawang Shipyard, now part of Singapore Exchange-listed SembCorp Marine) that went on to become SembCorp, a major state-owned industrial conglomerate.</p>`,
         "geom":[103.83007049560547,1.4627393356673588],
         "type":"Point"
     },{
@@ -137,6 +158,7 @@ const history = [
         "icon": "zoo",
         "image": "pic_9.jpg",
         "date":1973,
+        "description" : `<p>The Singapore Zoo, formerly known as the Singapore Zoological Gardens or Mandai Zoo and now commonly known locally as the Singapore Zoo, occupies 28 hectares (69 acres) on the margins of Upper Seletar Reservoir within Singapore's heavily forested central catchment area. The zoo was built at a cost of $9 million granted by the government of Singapore and opened on 27 June 1973. It is operated by Wildlife Reserves Singapore, who also manage the neighbouring Night Safari, River Safari and the Jurong Bird Park. There are about 315 species of animal in the zoo, of which some 16 percent are considered to be threatened species. The zoo attracts 1.7 million visitors each year.</p>`,
         "geom":[103.79436492919922,1.4037062985935518],
         "type":"Point"
     },{
@@ -144,12 +166,14 @@ const history = [
         "icon": "port",
         "image": "pic_8.jpg",
         "date": 1965,
+        "description":`<p>In 1963, Jurong Port was set up by the Singapore Economic Development Board (EDB) to support the growth of Singapore's first and biggest industrial estate, Jurong Industrial Estate. In 1965, the port officially commenced operations. In 1968, Jurong Town Corporation (JTC) was set up to drive the industrial estate development in Singapore and Jurong Port became a business division under JTC. On 1 January 2001, Jurong Port was corporatised and became a fully owned subsidiary of JTC Corporation.</p>`,
         "geom":[103.68810653686523,1.2410147076791553],
         "type":"Point"
     },{
         "name":"Pasir Panjang Container Terminal",
         "icon": "port",
         "image": "pic_7.jpg",
+        "description":`<p>In 1993, the Port of Singapore Authority (PSA), now corporatised as PSA International, started constructing a new container terminal at Pasir Panjang, the Pasir Panjang Terminal. it is located approximately 7 km west of the company's other container terminals at Keppel Harbour. This new, S$7 billion terminal, represents an immense expansion of PSA's container port. When fully completed in 2009, it is expected to raise PSA's container handling capacity by a further 18 million twenty-foot equivalent units (TEU) per year. The terminal's first four berths, of the planned 26, opened in 1998, with two more berths becoming operational by the time of the terminal's official opening in March 2000. The terminal is slated to cease operations by the year 2040 when the Tuas Megaport is completed and all of PSA assets will be transferred to the new port.</p>`,
         "date": 1974,
         "geom":[103.7742805480957,1.2804872656134916],
         "type":"Point"
@@ -157,6 +181,7 @@ const history = [
         "name":"Brani Terminal",
         "icon": "port",
         "image":"pic_6.jpg",
+        "description":`<p>Subsequently, part of the naval base was redeveloped to build Brani Container Terminal. On 12 October 2000, the rest of the base was officially closed when its facilities were moved to Changi Naval Base. The vacant facilities were taken over by the Singapore Police Force's Police Coast Guard for its new headquarters.</p>`,
         "date": 2000,
         "geom":[103.83333206176758,1.2593781025295887],
         "type":"Point"
@@ -164,6 +189,7 @@ const history = [
         "name":"Keppel Terminal",
         "icon": "port",
         "image" : "pic_5.jpg",
+        "description" : `<p>By the 1980s, maritime trading activity had ceased in the vicinity of the Singapore River except in the form of passenger transport, as other terminals and harbours took over this role. Keppel Harbour is now home to three container terminals. Other terminals were built in Jurong and Pasir Panjang as well as in Sembawang in the north. Today, the port operations in Singapore are handled by two players: PSA International (formerly the Port of Singapore Authority) and Jurong Port, which collectively operate six container terminals and three general-purpose terminals around Singapore.</p>`,
         "date": 1990, 
         "geom":[103.84157180786133,1.2672726064521231],
         "type":"Point"
@@ -202,6 +228,26 @@ const history = [
             <p>Lau Pa Sat (Chinese: 老巴刹; pinyin: Lǎo Bāshā; literally: 'Old Market'), also known as Telok Ayer Market (Malay: Pasar Telok Ayer; Chinese: 直落亚逸巴刹), is a historic building located within the Downtown Core in the Central Area of Singapore. It was first built in 1824 as a fish market on the waterfront serving the people of early colonial Singapore and rebuilt in 1838. It was then relocated and rebuilt at the present location in 1894. It is currently a food court with stalls selling a variety of local cuisine.</p>
             <p>The market remains one of the oldest Victorian design structure in South-East Asia and one of the first structure built in pre-fabricated cast iron in Asia. It is also the only remaining market left that served the residents in the central district of early Singapore.</p>`,
         "geom": [103.8496539,1.2801519],
+        "type": "Point"
+    }, {
+        "name": "Keong Saik Rd.",
+        "icon": "building",
+        "date": 1960,
+        "image": "pic_28.jpeg",
+        "copyright" : `By <a href="https://en.wikipedia.org/wiki/User:Sengkang" class="extiw" title="en:User:Sengkang">User:Sengkang</a> - <span class="int-own-work" lang="en">Own work</span>, <a href="//commons.wikimedia.org/wiki/File:Keong_Saik_Road,_Dec_05.JPG" title="Copyrighted free use">Copyrighted free use</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=561135">Link</a>`,
+        "description" : `
+            <p>Keong Saik Road was once a red light area in Chinatown in the 1960s, but has since been transformed into a street with many boutique hotels.</p>`,
+        "geom": [103.8395349, 1.2808043],
+        "type": "Point"
+    }, {
+        "name": "Clarke Quay",
+        "icon": "building",
+        "date": 1987,
+        "image": "pic_29.jpg",
+        "copyright" : `By <a href="//commons.wikimedia.org/w/index.php?title=User:C1815&amp;action=edit&amp;redlink=1" class="new" title="User:C1815 (page does not exist)">C1815</a>. - <span class="int-own-work" lang="en">Own work</span>., <a href="http://creativecommons.org/publicdomain/zero/1.0/deed.en" title="Creative Commons Zero, Public Domain Dedication">CC0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=39129058">Link</a>`,
+        "description" : `
+            <p>The government cleaned up the Singapore River and its environment from 1977 to 1987. Plans were made to revamp the area and turn it into a flourishing commercial, residential and entertainment precinct. These plans took into serious consideration the historical value of Clarke Quay, making it mandatory that new buildings complement the historical character of the area and that certain old buildings be restored.</p>`,
+        "geom": [103.8348516, 1.2834823],
         "type": "Point"
     }
 ]
