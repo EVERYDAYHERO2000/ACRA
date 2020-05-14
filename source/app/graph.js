@@ -270,6 +270,7 @@ export default class Graph {
               if (e.target.classList.value.includes('f-horizontal')) {
 
                   let step = e.target.getAttribute('data-step');
+                  _this._map.stop();
                   _this._map.drawData (step);
 
                   const foreignObject = document.querySelectorAll('.f-horizontal');

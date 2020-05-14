@@ -91,16 +91,57 @@
     pointer-events: none;
     display: flex;
     align-items: center;
+    z-index: 300;
+}
+
+.date-timer:before {
+    content: '';
+    display: block;
+    position: absolute;
+    z-index: -1;
+    width: 400px;
+    height: 400px;
+    background: url(../assets/filter.png);
+    background-size: cover;
+    transform: translate(-150px, 50px) scale(2.5,1);
+    opacity: .8;
+    transition: opacity 5s 1s ease;
+}
+
+.state_intro .date-timer:before {
+    opacity: 0;
 }
 
 .date-timer .date {
-    margin-right: 15px;
+    width: 145px;
 }
 
 .date-timer .event {
     font-size: 14px;
     width: 300px;
     font-weight: 500;
+    transform-origin: center;
+    animation: showText .3s ease forwards;
+}
+
+@keyframes showText {
+
+    0% {
+        opacity: 0;
+        transform:translateX(-10px)
+    }
+
+    100% {
+      opacity: 1;
+      transform:translateX(0px)
+    }
+  }
+
+
+  
+.date-timer .event.event_hidden {
+    opacity: 0;
+    transition: all .2s;
 }
 
 @media screen and (max-width: 500px) {
@@ -202,4 +243,10 @@
     border:none;
 }
 
+.leaflet-bar.leaflet-control > a:hover {
+    filter : drop-shadow(0px 0px 3px white);
+}
 
+.ct-point {
+    display: none;
+}

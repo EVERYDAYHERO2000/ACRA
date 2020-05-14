@@ -232,6 +232,8 @@ export default class Map {
         this._vertsLength = 0;
         this._step = +(step || this._step || this._maxStep);
         this._step = (this._step > this._maxStep ) ? this._maxStep : this._step;
+
+        this._historyMode = this._historyMode || true;
         
         this._graph.drawStep(this._step);
 
@@ -271,12 +273,30 @@ export default class Map {
 
             if (this._places._length){  
 
+                let eventText = document.querySelector('.date-timer .event');
+
+                if ( eventText ) {
+
+                    if (document.querySelector('#history').getAttribute('data-visible') == 'on'){
+
+                        this._historyMode = true;
+
+                    } else {
+
+                        this._historyMode = false;
+
+                    }   
+
+                }
+
+
                 for (var i = 0; i < this._historyPlaces.length; i++){
-                    let markers = document.querySelectorAll(`.place-marker[data-step="${this._historyPlaces[i].dateIndex}"]`);  
+                    let markers = document.querySelectorAll(`.place-marker[data-step="${this._historyPlaces[i].dateIndex}"]`); 
+                     
 
                     for (var marker of markers){
 
-                        if (document.querySelector('#history').getAttribute('data-visible') == 'on'){
+                        if ( this._historyMode ){
 
                             if ( +this._historyPlaces[i].dateIndex <= this._step ) {
                                 if (marker) marker.classList.add('place-marker_visible');
@@ -324,6 +344,7 @@ export default class Map {
             }    
 
             let historyEvent = null;
+            let eventClass = (this._historyMode) ? '' : 'event_hidden'
 
             for (var h = 0; h < this._historyEvents.length; h++){
 
@@ -331,7 +352,7 @@ export default class Map {
 
             }
 
-            this._dateElem.innerHTML = (!historyEvent) ? `<div class="date">${this._dates[this._step].date}</div>` : `<div class="date">${this._dates[this._step].date}</div><div class="event">${historyEvent}</div>`;
+            this._dateElem.innerHTML = (!historyEvent) ? `<div class="date">${this._dates[this._step].date}</div><div class="event ${eventClass}"></div>` : `<div class="date">${this._dates[this._step].date}</div><div class="event ${eventClass}">${historyEvent}</div>`;
 
 
             const foreignObject = document.querySelectorAll('.f-horizontal');
