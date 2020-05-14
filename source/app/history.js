@@ -1,6 +1,121 @@
 export default function (dates) {
 
 const history = [
+    {
+        "name" : "Prohibition in the United States",
+        "date" : 1920
+    },
+    {
+        "name" : "USSR was formed",
+        "date" : 1922
+    },
+    {
+        "name" : "Broadcast the first transatlantic television signal",
+        "date" : 1928
+    },
+    {
+        "name" : "Wall Street Crash, followed by the Great Depression",
+        "date" : 1929 
+    },
+    {
+        "name" : "World War II",
+        "date" : 1939    
+    },
+    {
+        "name" : "War breaks out in the Pacific",
+        "date" : 1941
+    },
+    {
+        "name" : "Japan and its ally Thailand had almost fully conquered Burma, Malaya, the Dutch East Indies, Singapore, and Rabaul",
+        "date" : 1942
+    },
+    {
+        "name" : "Ending the World War II",
+        "date" : 1945   
+    },
+    {
+        "name" : "Vietnam War",
+        "date" : 1955
+    },
+    {
+        "name" : "The first workable prototype of the Internet",
+        "date" : 1960
+    },
+    {
+        "name" : "Oil crisis – oil prices soared, causing the 1973–1974 stock market crash",
+        "date" : 1973 
+    },
+    {
+        "name" : "Latin American debt crisis – beginning in Mexico in 1982 with the Mexican Weekend",
+        "date" : 1980 
+    },
+    {
+        "name" : "Bank stock crisis",
+        "date" : 1983
+    },
+    {
+        "name" : "Researchers began to assemble the “network of networks” that became the modern Internet",
+        "date" : 1984
+    },
+    {
+        "name" : "Black Monday – the largest one-day percentage decline in stock market history",
+        "date" : 1987
+    },
+    {
+        "name" : "United States Savings & Loan crisis",
+        "date" : 1989
+    },
+    {
+        "name" : "Japanese asset price bubble collapsed",
+        "date" : 1990
+    },
+    {
+        "name" : "Black Wednesday – speculative attacks on currencies in the European Exchange Rate Mechanism",
+        "date" : 1992
+    },
+    {
+        "name" : "Economic crisis in Mexico – speculative attack and default on Mexican debt",
+        "date" : 1994
+    },
+    {
+        "name" : "Asian Financial Crisis – devaluations and banking crises across Asia",
+        "date" : 1997
+    },
+    {
+        "name" : "Russian financial crisis",
+        "date" : 1998
+    },
+    {
+        "name" : "Argentine economic crisis",
+        "date" : 1999
+    },
+    {
+        "name" : "Bursting of dot-com bubble – speculations concerning internet companies crashed",
+        "date" : 2001
+    },
+    {
+        "name" : "Financial crisis of 2007–2008",
+        "date" : 2007
+    },
+    {
+        "name" : "European sovereign debt crisis",
+        "date" : 2010
+    },
+    {
+        "name" : "Russian financial crisis",
+        "date" : 2014
+    },
+    {
+        "name" : "Turkish currency and debt crisis",
+        "date" : 2018
+    },
+    {
+        "name" : "COVID-19 pandemic. Stock market crash",
+        "date" : 2020
+    }
+]
+
+const historyPoints = [
     { 
         "name": "Marina Bay Street Circuit",
         "icon": "car",
@@ -252,6 +367,22 @@ const history = [
     }
 ]
     
+    for (var i = 0; i < historyPoints.length; i++) {
+
+        for(var d in dates) {
+
+            if (historyPoints[i].date == dates[d].date) { 
+                historyPoints[i].dateIndex = dates[d].dateIndex
+            }    
+
+        }
+
+        if (!historyPoints[i].dateIndex) historyPoints[i].dateIndex = 0;
+
+        historyPoints[i].id = i;
+
+    }
+
     for (var i = 0; i < history.length; i++) {
 
         for(var d in dates) {
@@ -268,6 +399,7 @@ const history = [
 
     }
 
-    return history;
+
+    return [historyPoints,history];
 
 }

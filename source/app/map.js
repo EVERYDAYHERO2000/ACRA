@@ -156,12 +156,13 @@ export default class Map {
         return this;
     }
 
-    setData (data, codes, dates, historyPlaces) {
+    setData (data, codes, dates, history) {
 
         this._data = data;
         this._dates = dates;
         this._codes = codes;
-        this._historyPlaces = historyPlaces;
+        this._historyPlaces = history[0];
+        this._historyEvents = history[1];
 
         let keys = []; 
         for (var k in dates) {
@@ -180,7 +181,7 @@ export default class Map {
 
         const _this = this;
         const maxStep = +this._maxStep;
-        const speed = 100;
+        const speed = 300;
 
         if ( _this._step >= maxStep ) _this._step = this._minStep;
 
@@ -232,6 +233,7 @@ export default class Map {
         this._step = +(step || this._step || this._maxStep);
         this._step = (this._step > this._maxStep ) ? this._maxStep : this._step;
         
+        this._graph.drawStep(this._step);
 
         const _this = this;
 
@@ -321,9 +323,16 @@ export default class Map {
 
             }    
 
-            
+            let historyEvent = null;
 
-            this._dateElem.innerHTML = this._dates[this._step].date;
+            for (var h = 0; h < this._historyEvents.length; h++){
+
+                if (this._historyEvents[h].dateIndex == this._step) historyEvent = this._historyEvents[h].name
+
+            }
+
+            this._dateElem.innerHTML = (!historyEvent) ? `<div class="date">${this._dates[this._step].date}</div>` : `<div class="date">${this._dates[this._step].date}</div><div class="event">${historyEvent}</div>`;
+
 
             const foreignObject = document.querySelectorAll('.f-horizontal');
 

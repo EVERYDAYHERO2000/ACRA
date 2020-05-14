@@ -44,7 +44,7 @@ function runapp(){
 
   
 
-app.data.load(function(dataset, dates, codes, historyPlaces){
+app.data.load(function(dataset, dates, codes, history){
 
     let defaultQuery = [
         {
@@ -153,13 +153,15 @@ app.data.load(function(dataset, dates, codes, historyPlaces){
 
     app.filter.setMap(app.map).setGraph(app.graph);
 
-    app.graph.setMap(app.map).setDates(dates).setHistory(historyPlaces);
+    app.graph.setMap(app.map).setDates(dates).setHistory(history);
     
     app.map.setSsic(app.ssic).setGraph(app.graph);
 
-    app.map.setData(dataset, codes, dates, historyPlaces);
+    app.map.setData(dataset, codes, dates, history);
 
     app.filter.setData(dataset, codes, dates).setQuery(defaultQuery);
+
+    if (app.browser.isMobile != 'mobile') app.map._map.setZoom(11)
 
 
 });

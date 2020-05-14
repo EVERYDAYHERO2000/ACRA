@@ -16,7 +16,7 @@ export default class Graph {
 
     setHistory (history) {
 
-      this._history = history;
+      this._history = history[0];
 
       return this;
     }
@@ -36,6 +36,75 @@ export default class Graph {
 
       return this;
 
+    }
+
+    drawStep(step) {
+
+      const _this = this;
+
+      let offsetStep = 33
+
+      this._step = step - offsetStep || (function(){
+
+        let maxDate = null
+
+        for (var d in _this._rawDates) {
+
+          maxDate = _this._rawDates[d].dateIndex - offsetStep;
+
+        }
+
+        return maxDate
+
+      })();
+
+
+      const graphs = document.querySelectorAll('.ct-line');
+
+      for (var g of graphs) {
+
+        const dTemp = g.getAttribute('d-temp').split('C');
+
+        let d = dTemp[0];
+
+        for (var s = 1; s < this._step; s++) {
+
+          d += 'C' + dTemp[s]
+
+        }
+
+        g.setAttribute('d',d);
+        
+
+      }
+
+
+      const fHorizontal = document.querySelectorAll('.f-horizontal');
+
+      for (var f of fHorizontal) {
+
+        const dataStep = +f.getAttribute('data-step') - offsetStep
+
+        let historyGroup = f.querySelector('.history-group');
+
+        if (historyGroup){ 
+
+          if (dataStep <= this._step) {
+
+            historyGroup.classList.add('history-group_visible')
+
+          } else {
+
+            historyGroup.classList.remove('history-group_visible')
+
+          }
+
+        }
+        
+      }
+
+
+      return this;
     }
 
     drawData() {
@@ -106,7 +175,7 @@ export default class Graph {
           });
 
           this._chart.on('created', function() {
-              
+
               const foreignObject = document.querySelectorAll('foreignObject');
 
               let count = _this._map._minStep;
@@ -134,10 +203,12 @@ export default class Graph {
                           f.appendChild(historyGroup);
                         } 
 
+                        
+
                         let historyPoint = document.createElement('div');
                         historyPoint.classList.add('history-point');
                         historyPoint.setAttribute('data-id', _this._history[i].id);
-                        historyPoint.setAttribute('title', _this._history[i].className);
+                        historyPoint.setAttribute('title', _this._history[i].name);
                         f.querySelector('.history-group').appendChild(historyPoint);
 
                       }
@@ -150,12 +221,21 @@ export default class Graph {
 
               }
 
+              const graphs = document.querySelectorAll('.ct-line');
+
+              for (var g of graphs) {
+
+                g.setAttribute('d-temp', g.getAttribute('d'));
+
+              }
+
               const horizontal = document.querySelectorAll('.ct-horizontal');
 
               horizontal[0].classList.add('ct-first');
               horizontal[horizontal.length - 1].classList.add('ct-last');
+              
 
-
+              _this.drawStep();
 
           });
 

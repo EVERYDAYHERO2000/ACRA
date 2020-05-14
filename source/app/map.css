@@ -82,14 +82,37 @@
 
 .date-timer {
     position: absolute;
-    bottom: 50px;
-    left: 50px;
+    bottom: 70px;
+    left: 70px;
     color: #fff;
     font-size: 54px;
     font-weight: 700;
     font-family: 'Montserrat', sans-serif;
     pointer-events: none;
+    display: flex;
+    align-items: center;
 }
+
+.date-timer .date {
+    margin-right: 15px;
+}
+
+.date-timer .event {
+    font-size: 14px;
+    width: 300px;
+    font-weight: 500;
+}
+
+@media screen and (max-width: 500px) {
+    .date-timer {
+        bottom: 50px;
+        left: 50px;
+    }
+
+    .date-timer .event {
+        display: none;
+    }    
+}    
 
 .leaflet-tile-pane {
     transition: all .3s;
