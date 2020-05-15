@@ -4,6 +4,7 @@
 @import "sidebar.css" all;
 @import "map-svg.css" all;
 @import "intro.css" all;
+@import "onboarding.css" all;
 
 body {
     margin:0;

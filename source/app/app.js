@@ -46,6 +46,58 @@ function runapp(){
 
 app.data.load(function(dataset, dates, codes, history){
 
+    let onboardingContainer = document.querySelector('#onboarding');
+
+    onboardingContainer.innerHTML = `
+    <div class="onboarding__screen" id="obording_1">
+        <div class="onboarding__popup">
+            <p>Animation tour will show what happened in Singapore and in the world between 1920 and 2020</p>
+            <div class="button" id="start-animation">Take a tour</div>
+            <div class="button button_ghost" id="skip-animation">Skip</div>
+        </div>
+    </div>`;
+
+    let sidebar = document.querySelector('#sidebar');
+    let mapControls = document.querySelector('.leaflet-control-zoom');
+    let timer = document.querySelector('.date-timer');
+    let graph = document.querySelector('#graph');
+
+    //sidebar.style.opacity = 0;
+    //mapControls.style.opacity = 0;
+    //timer.style.opacity = 0;
+    //graph.style.opacity = 0;
+
+    onboardingContainer.addEventListener('click', function(e){
+
+        if (e.target.id == 'start-animation') {
+
+            onboardingContainer.innerHTML = '';
+
+            document.querySelector('.leaflet-control-play').click();
+
+            //showAll()
+
+        }
+
+        if (e.target.id == 'skip-animation') {
+
+            onboardingContainer.innerHTML = '';
+
+            //showAll()
+
+        }
+
+        function showAll (){
+
+            sidebar.removeAttribute('style');
+            mapControls.removeAttribute('style');
+            timer.removeAttribute('style');
+            graph.removeAttribute('style');
+        }
+
+    });
+
+
     let defaultQuery = [
         {
             type : 'item',

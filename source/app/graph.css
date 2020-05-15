@@ -126,3 +126,7 @@
   .f-horizontal {
     transform: translateX(-20px);
   }
+
+  .ct-vertical {
+    display: none;
+  }
