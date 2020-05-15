@@ -5,6 +5,7 @@
 @import "map-svg.css" all;
 @import "intro.css" all;
 @import "onboarding.css" all;
+@import "share.css" all;
 
 body {
     margin:0;

@@ -1,0 +1,37 @@
+#share {
+    pointer-events: none;
+    width: 100vw;
+    position: fixed;
+    top:0;
+    left:0;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.state_intro #share {
+    z-index: 1000000;
+}
+
+.share__button {
+    pointer-events: all;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.share__button:before {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 20px;
+    background: url(../assets/icons.svg);
+    background-position: 0 -120px;
+    background-repeat: no-repeat;
+    margin: 0 5px 0 0;
+}
+
+

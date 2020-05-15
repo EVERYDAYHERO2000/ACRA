@@ -24,8 +24,13 @@
         <meta name="twitter:description" content="Osome mapped the registered addresses of all the companies incorporated in Singapore between 1920 and 2020.">
         <meta name="twitter:image" content="cover.png">
     </head>
-    <body>
-        <div id="app" class="state_intro">
+    <body class="state_intro">
+        
+        <script src="https://yastatic.net/es5-shims/0.0.2/es5-shims.min.js"></script>
+        <script src="https://yastatic.net/share2/share.js"></script>
+        <div style="display: none;" class="ya-share2" data-services="facebook,twitter,reddit,linkedin,whatsapp"></div>
+
+        <div id="app">
             <div id="map"></div>
             <div id="graph"></div>
             <div id="sidebar"></div>
@@ -41,6 +46,7 @@
         </div>
         <div id="onboarding">
         </div>
+        <div id="share"><div class="share__button">Share</div></div>
         <script src="source/app/app.js" type="module"></script>
         <!--<script src="dist/scripts/bundle.js"></script>-->
     </body>

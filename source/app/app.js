@@ -30,7 +30,7 @@ app.map.create({
 document.querySelector('#run').addEventListener('click', function(){
 
     document.querySelector('#intro').classList.add('intro_hide');
-    document.querySelector('#app').classList.remove('state_intro');
+    document.querySelector('body').classList.remove('state_intro');
 
     setTimeout(function(){
         document.querySelector('#intro').remove();  
@@ -40,13 +40,67 @@ document.querySelector('#run').addEventListener('click', function(){
 
 });
 
+let onboardingContainer = document.querySelector('#onboarding');
+
+document.querySelector('#share').addEventListener('click', function(){
+
+    if (app.browser.isMobile == 'mobile' && navigator.share) {
+
+        navigator.share({
+            title: document.title,
+            text: 'Osome mapped the registered addresses of all the companies incorporated in Singapore between 1920 and 2020',
+            url: location.href
+        })
+
+    } else {
+
+        let s = document.querySelector('.ya-share2').innerHTML
+
+        onboardingContainer.innerHTML = `
+        <div class="onboarding__screen" id="obording_1">
+            <div class="onboarding__popup">
+                
+                <p>You can also copy the link <b>${location.href}</b> and share this page with your friends or click the social button below</p>
+                ${s}        
+
+                <div class="button button_ghost" id="close">Close</div>
+            </div>
+        </div>`
+    }
+
+});
+
+onboardingContainer.addEventListener('click', function(e){
+
+    if (e.target.id == 'start-animation') {
+
+        onboardingContainer.innerHTML = '';
+
+        document.querySelector('.leaflet-control-play').click();
+
+    }
+
+    if (e.target.id == 'skip-animation') {
+
+        onboardingContainer.innerHTML = '';
+
+    }
+
+    if (e.target.id == 'close') {
+
+        onboardingContainer.innerHTML = '';
+
+    }
+
+});
+
 function runapp(){
 
   
 
 app.data.load(function(dataset, dates, codes, history){
 
-    let onboardingContainer = document.querySelector('#onboarding');
+    
 
     onboardingContainer.innerHTML = `
     <div class="onboarding__screen" id="obording_1">
@@ -59,25 +113,7 @@ app.data.load(function(dataset, dates, codes, history){
 
     
 
-    onboardingContainer.addEventListener('click', function(e){
-
-        if (e.target.id == 'start-animation') {
-
-            onboardingContainer.innerHTML = '';
-
-            document.querySelector('.leaflet-control-play').click();
-
-
-        }
-
-        if (e.target.id == 'skip-animation') {
-
-            onboardingContainer.innerHTML = '';
-
-
-        }
-
-    });
+    
 
 
     let defaultQuery = [
