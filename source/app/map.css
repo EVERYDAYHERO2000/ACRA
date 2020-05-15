@@ -121,6 +121,9 @@
     width: 300px;
     font-weight: 500;
     transform-origin: center;
+}
+
+.date-timer .event:not(.event_hidden) {
     animation: showText .3s ease forwards;
 }
 

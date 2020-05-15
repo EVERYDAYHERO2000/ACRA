@@ -57,15 +57,7 @@ app.data.load(function(dataset, dates, codes, history){
         </div>
     </div>`;
 
-    let sidebar = document.querySelector('#sidebar');
-    let mapControls = document.querySelector('.leaflet-control-zoom');
-    let timer = document.querySelector('.date-timer');
-    let graph = document.querySelector('#graph');
-
-    //sidebar.style.opacity = 0;
-    //mapControls.style.opacity = 0;
-    //timer.style.opacity = 0;
-    //graph.style.opacity = 0;
+    
 
     onboardingContainer.addEventListener('click', function(e){
 
@@ -75,7 +67,6 @@ app.data.load(function(dataset, dates, codes, history){
 
             document.querySelector('.leaflet-control-play').click();
 
-            //showAll()
 
         }
 
@@ -83,16 +74,7 @@ app.data.load(function(dataset, dates, codes, history){
 
             onboardingContainer.innerHTML = '';
 
-            //showAll()
 
-        }
-
-        function showAll (){
-
-            sidebar.removeAttribute('style');
-            mapControls.removeAttribute('style');
-            timer.removeAttribute('style');
-            graph.removeAttribute('style');
         }
 
     });
