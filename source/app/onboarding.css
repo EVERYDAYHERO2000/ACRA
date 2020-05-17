@@ -58,3 +58,48 @@
 .button_ghost {
     border: 2px solid transparent;
 }
+
+.button:hover {
+    filter : drop-shadow(0px 0px 3px rgba(255,255,255,0.5));
+}
+
+.color-restaurant, .color-finance, .color-shipping, .color-technology {
+    white-space: nowrap;
+}
+
+.color-restaurant:before {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    margin: 0 3px 0 0;
+    border-radius: 50%;
+    background-color:#ed9121;
+}
+.color-finance:before { 
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    margin: 0 3px 0 0;
+    border-radius: 50%;
+    background-color:#a7fc00;
+}
+.color-shipping:before { 
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    margin: 0 3px 0 3px;
+    border-radius: 50%;
+    background-color: #7fc7ff;
+}
+.color-technology:before { 
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    margin: 0 3px 0 0;
+    border-radius: 50%;
+    background-color: #ff4f00;
+}

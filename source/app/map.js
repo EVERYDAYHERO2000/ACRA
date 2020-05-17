@@ -183,6 +183,8 @@ export default class Map {
         const maxStep = +this._maxStep;
         const speed = 300;
 
+        this._speed = speed;
+
         if ( _this._step >= maxStep ) _this._step = this._minStep;
 
         

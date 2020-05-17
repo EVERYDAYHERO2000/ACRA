@@ -70,17 +70,59 @@ document.querySelector('#share').addEventListener('click', function(){
 
 });
 
+let tour = false;
+
 onboardingContainer.addEventListener('click', function(e){
+
+    if (e.target.id == 'end-tour') {
+
+        document.querySelector('#sidebar').classList.remove('visible');
+
+        onboardingContainer.innerHTML = '';
+
+    }
 
     if (e.target.id == 'start-animation') {
 
         onboardingContainer.innerHTML = '';
 
+        document.querySelector('#sidebar').classList.remove('visible');
+
         document.querySelector('.leaflet-control-play').click();
+
+        setTimeout(function(){
+
+            document.querySelector('#sidebar').classList.add('visible');
+
+            onboardingContainer.innerHTML = `
+            <div class="onboarding__screen" id="obording_1">
+                <div class="onboarding__popup">
+                    <p>Now you can try to select other business category or specify SSIC code</p>
+                    <div class="button" id="end-tour">Resume</div>
+                </div>
+            </div>`;
+
+        }, ((app.map._maxStep - app.map._minStep) * app.map._speed) + 1000 );
+
+
+    }    
+
+    if (e.target.id == 'start-tour') {
+
+        document.querySelector('#sidebar').classList.add('visible');
+
+        onboardingContainer.innerHTML = `
+        <div class="onboarding__screen" id="obording_1">
+            <div class="onboarding__popup">
+                <p>We have selected four categories for demonstration: <span class="color-restaurant">Restaurants</span>, <span class="color-finance">Finance</span>, <span class="color-shipping">Shipping</span> and <span class="color-technology">Technology</span>.</p>
+                <p>They will be displayed on the map and graphs.</p>
+                <div class="button" id="start-animation">Resume</div>
+            </div>
+        </div>`;
 
     }
 
-    if (e.target.id == 'skip-animation') {
+    if (e.target.id == 'skip-tour') {
 
         onboardingContainer.innerHTML = '';
 
@@ -106,8 +148,8 @@ app.data.load(function(dataset, dates, codes, history){
     <div class="onboarding__screen" id="obording_1">
         <div class="onboarding__popup">
             <p>Animation tour will show what happened in Singapore and in the world between 1920 and 2020</p>
-            <div class="button" id="start-animation">Take a tour</div>
-            <div class="button button_ghost" id="skip-animation">Skip</div>
+            <div class="button" id="start-tour">Take a tour</div>
+            <div class="button button_ghost" id="skip-tour">Skip</div>
         </div>
     </div>`;
 

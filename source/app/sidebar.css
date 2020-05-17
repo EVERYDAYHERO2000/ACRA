@@ -58,7 +58,7 @@
     transition: all .2s;
 }
  
-#sidebar:hover .sidebar__item {
+#sidebar:hover .sidebar__item, #sidebar.visible .sidebar__item{
     border-bottom: 1px solid rgba(255,255,255,.2);
     translate: all .2s; 
 }
@@ -157,7 +157,7 @@
 }    
 
 
-#sidebar:hover .sidebar__item-value-name, #sidebar:hover .sidebar__item-name {
+#sidebar:hover .sidebar__item-value-name, #sidebar:hover .sidebar__item-name, #sidebar.visible .sidebar__item-value-name, #sidebar.visible .sidebar__item-name {
     opacity: 1!important;
     transition: all .2s;
 } 
@@ -278,7 +278,7 @@
     opacity: 0;
 }
 
-#sidebar:hover .sidebar__value.hidden .sidebar__item-icon {
+#sidebar:hover .sidebar__value.hidden .sidebar__item-icon,  {
     opacity: 1;
 }
 
