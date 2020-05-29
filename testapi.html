@@ -75,6 +75,66 @@
         font-weight: 700;
     }
 
+    .search-results__spinner {
+        text-align: center;
+        padding: 2rem 0;
+        position: relative;
+        margin-bottom: 40px;
+    }
+
+    .search-results__spinner div {
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-top: -15px;
+        margin-left: -15px;
+        border: 3px solid blue;;
+        border-radius: 50%;
+    }
+
+    .search-results__spinner {
+        text-align: center;
+        padding: 2rem 0;
+        position: relative;
+        margin-bottom: 40px;
+    }
+
+    .search-results__spinner div:after, .search-results__spinner div:before {
+        content: "";
+        position: absolute;
+        display: block;
+        width: 3px;
+        background-color: blue;;
+        border-radius: 1.5px;
+        transform-origin: 50% 0;
+    }
+
+    .search-results__spinner div:before {
+        height: 9px;
+        left: 13.5px;
+        top: 50%;
+        -webkit-animation: spin 1500ms linear infinite;
+        animation: spin 1500ms linear infinite;
+    }
+
+    .spinner__outer {
+        width: 100%;
+        padding: 50px;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #result {
+        width: calc(100% - 300px)
+    }
+
+    @keyframes spin{to{transform:rotate(360deg)}}
+
 </style>    
 
 <div class="app">
@@ -99,6 +159,8 @@ let uenResult = [];
 
 function search(value){
 
+    list.innerHTML = `<div class="spinner__outer"><div class="search-results__spinner search-results__spinner_hidden"><div></div></div></div>`;
+
     requestUEN(value, function(d){
 
         uenResult = d;
@@ -117,7 +179,7 @@ function search(value){
 
         } else {
 
-            list.innerText = '<div class="item"><h2>There is nothing to show</h2></div>'
+            list.innerHTML = '<div class="item"><h2>There is nothing to show</h2></div>'
 
         }
 
@@ -151,6 +213,8 @@ list.addEventListener('click', function(e){
     let id = (target == 'item__inner') ? e.target.getAttribute('data-id') : null;
 
     if (uen) {
+
+        result.innerHTML = `<div class="spinner__outer"><div class="search-results__spinner search-results__spinner_hidden"><div></div></div></div>`;
 
         requestSSIC(name,uen, function(d){
 
