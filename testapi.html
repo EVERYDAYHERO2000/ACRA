@@ -1,48 +1,142 @@
+<style>
+
+    body {
+        font-family: sans-serif;
+        font-size: 14px;
+        margin:0;
+        padding:0;
+    }
+
+    .form {
+        padding: 30px;
+        display: flex;
+    }
+
+    #search {
+        border-radius: 5px;
+        border: 1px solid rgba(0,0,0,0.3);
+        width: 300px;
+        padding: 8px 12px;
+    }
+
+    #searchbtn {
+        margin : 0 0 0 10px;
+        padding: 8px 12px;
+        box-sizing: border-box;
+        border-radius: 5px;
+        color: #fff;
+        background: blue;
+        cursor:pointer;
+    }
+
+    .flex {
+        display: flex;
+    }
+
+    #list {
+        padding: 0 0 30px 0;
+        width: 310px;
+        max-width: 310px;
+        min-width: 310px;
+    }
+
+    #list h2 {
+        padding-left: 8px;
+    }
+
+    #list .item {
+        padding: 8px 22px;
+        cursor:pointer;
+        box-sizing: border-box;
+        font-size: 12px;
+    }
+
+    #list .item div {
+        padding: 8px;
+    }
+
+    #list .item div:hover {
+
+        background-color: rgba(0, 138, 255, 0.09);
+        border-radius: 5px;
+
+    }
+
+    .string {
+        display: flex;
+        padding: 8px 30px;
+    }
+
+    .string div:first-child {
+        margin: 0 10px 0 0;
+    }
+
+    .string div:last-child {
+        font-weight: 700;
+    }
+
+</style>    
+
 <div class="app">
-    <input type="text" id="search" placeholder="Company name or UEN" />
-    <div id="list">
+    <div class="form"><input type="text" id="search" placeholder="Company name or UEN" /><div id="searchbtn">Search</div></div>
+    <div class="flex">
+        <div id="list">
 
-    </div>
-    <div id="result">
+        </div>
+        <div id="result">
 
+        </div>
     </div>
 </div>    
 <script>
 
 const searchInput = document.querySelector('#search');
+const searchBtn = document.querySelector('#searchbtn');
 const result = document.querySelector('#result');
 const list = document.querySelector('#list');
 
 let uenResult = [];
+
+function search(value){
+
+    requestUEN(value, function(d){
+
+        uenResult = d;
+
+        if (d.length) {
+
+            let listResult = '<div class="item"><h2>Result</h2></div>';
+
+            for (let el in d) {
+
+                listResult += `<div class="item"><div class="item__inner" data-id="${el}" data-uen="${d[el].uen}" data-name="${d[el].entity_name}">${d[el].entity_name} (UEN: ${d[el].uen})</div></div>`
+
+            }
+
+            list.innerHTML = listResult;
+
+        } else {
+
+            list.innerText = '<div class="item"><h2>There is nothing to show</h2></div>'
+
+        }
+
+    })
+
+}
+
+searchBtn.addEventListener('click', function(e){
+
+    search(searchInput.value);
+
+})
 
 searchInput.addEventListener('keyup', function(e){
     let key = e.keyCode;
 
     if (key == 13) {
 
-        requestUEN(searchInput.value, function(d){
-
-            uenResult = d;
-
-            if (d.length) {
-
-                let listResult = '';
-
-                for (let el in d) {
-
-                    listResult += `<div class="item" data-id="${el}" data-uen="${d[el].uen}" data-name="${d[el].entity_name}">${d[el].entity_name} (UEN: ${d[el].uen})</div>`
-
-                }
-
-                list.innerHTML = listResult;
-
-            } else {
-
-                list.innerText = 'There is nothing to show'
-
-            }
-
-        })
+        search(searchInput.value);
 
     }
 
@@ -51,9 +145,10 @@ searchInput.addEventListener('keyup', function(e){
 list.addEventListener('click', function(e){
 
     let target = e.target.className;
-    let uen = (target == 'item') ? e.target.getAttribute('data-uen') : null;
-    let name = (target == 'item') ? e.target.getAttribute('data-name') : null;
-    let id = (target == 'item') ? e.target.getAttribute('data-id') : null;
+
+    let uen = (target == 'item__inner') ? e.target.getAttribute('data-uen') : null;
+    let name = (target == 'item__inner') ? e.target.getAttribute('data-name') : null;
+    let id = (target == 'item__inner') ? e.target.getAttribute('data-id') : null;
 
     if (uen) {
 
@@ -65,11 +160,11 @@ list.addEventListener('click', function(e){
 
             }
 
-            let description = '';
+            let description = `<div class="string"><h2>${uenResult[id].entity_name}</h2></div>`;
 
             for (let k in uenResult[id]) {
 
-                description += `<div><div>${k}</div><div>${uenResult[id][k]}</div></div>`;
+                description += `<div class="string"><div>${k}: </div><div>${uenResult[id][k]}</div></div>`;
 
             }
 
