@@ -234,6 +234,23 @@ list.addEventListener('click', function(e){
 
             result.innerHTML = description;
 
+            requestGEO(uenResult[id].street_name, uenResult[id].block, function(d){
+
+                if (d.length) {
+
+                    for (let k in d[0]) {
+
+                        uenResult[id][k] = d[0][k];
+                        description += `<div class="string"><div>${k}: </div><div>${d[0][k]}</div></div>`;
+
+                    }
+
+                    result.innerHTML = description;
+
+                }
+
+            })
+
 
         })
 
@@ -334,6 +351,17 @@ function requestUEN(value, callback) {
     })   
     
     return false;
+
+}
+
+
+function requestGEO(street, block, callback) {
+
+    let address = (block) ? `${block}%2F${street.replace(/\s+/gi, '+')}` : street.replace(/\s+/gi, '+');
+
+    getData(`https://nominatim.openstreetmap.org/search.php?street=${address}&city=singapore&format=json`, function(d){
+        callback(d)
+    })    
 
 }
 
