@@ -10,17 +10,18 @@ export default class Sidebar {
 
         const _this = this;
 
-        this._tplItem = function (query) {
+        this._tplItem = function (query, value, colorIndex) {
 
             const id = query.length;   
-            const colorIndex = randomInteger(0, _this._colors.hex.length);
+            colorIndex = colorIndex || randomInteger(0, _this._colors.hex.length);
             const color = _this._colors.hex[colorIndex];
+
 
             query.push({
                 type: "item",
-                title: "Test item",
+                title: "User item",
                 control: "checkbox",
-                value: ["00000"],
+                value: [value],
                 colorIndex : colorIndex,
                 visible: true,
                 id : id
@@ -38,7 +39,7 @@ export default class Sidebar {
                         <div class="color-select" data-item="${id}" style="background-color:#${color}" ></div>
                     </div>
                     <div class="sidebar__item-name">
-                        <input class="sidebar__item-input" type="text" placeholder="Enter SSIC code or part of it" autofocus />
+                        <input class="sidebar__item-input" type="text" value="${(value !== '00000') ? value : '' }" placeholder="Enter SSIC code or part of it" autofocus />
                     </div>
                 </div>
                 <div class="sidebar__item-tools">
@@ -150,6 +151,40 @@ export default class Sidebar {
             </div>`;
 
         }    
+
+        return this;
+    }
+
+    addUserFilter (value) {
+
+        let tplitem = this._tplItem(this._query, value);
+
+        let filterContainer = document.querySelector('.user-filter');
+
+        filterContainer.insertAdjacentHTML('beforeEnd', tplitem);
+
+        this._filter.setQuery(this._query);
+
+        return this;
+
+    }
+
+    hideAllItems () {
+
+        let items = document.querySelectorAll('.tool_visible[data-visible="on"]');
+        let tabs = document.querySelectorAll('.sidebar__item.sidebar__item_group');
+
+        for (let i of items) i.click();
+        for (let t of tabs)  t.setAttribute('data-open','off');
+
+        return this;
+    }
+
+    removeAllUserFilters () {
+
+        let items = document.querySelectorAll('.tool_remove');
+
+        for (let i of items) i.click();
 
         return this;
     }
@@ -273,49 +308,11 @@ export default class Sidebar {
                 closeButton.classList.add('visible');
             }  
 
-            /*
-            //change history visibility on graph
-            if (e.target.id == 'history') {
-
-                let markers = document.querySelectorAll('.history-group');
-
-                
-
-                if (e.target.getAttribute('data-visible') == 'on') {
-
-                    console.log('on')
-                    
-                    for (var m of markers) {
-
-                        m.classList.add('history-group_hidden');
-
-                    }
-
-                } else {
-
-                    console.log('off')
-
-                    for (var m of markers) {
-
-                        m.classList.remove('history-group_hidden');
-
-                    }
-
-                }
-
-            }
-            */
 
             //add filter 
             if (e.target.className.includes('sidebar__custom-filter')) {
 
-                let tplitem = _this._tplItem(_this._query);
-
-                let filterContainer = document.querySelector('.user-filter');
-
-                filterContainer.insertAdjacentHTML('beforeEnd', tplitem);
-
-                _this._filter.setQuery(_this._query);
+                _this.addUserFilter("00000");
 
             }
 
@@ -547,6 +544,9 @@ export default class Sidebar {
                     }
 
                 }
+
+                
+
             }
 
         })

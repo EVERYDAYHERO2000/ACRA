@@ -4,7 +4,7 @@ import Colors from "./colors.js";
 import Browser from "./browser.js";
 import Loader from "./loader.js";
 import MapSvg from "./map-svg.js";
-
+import searchCompany from "./search-company.js";
 
 export default class Map {
 
@@ -25,6 +25,13 @@ export default class Map {
         this._animationTimer = null;
 
         this.colors = new Colors();
+    }
+
+    setSidebar (sidebar) {
+
+        this._sidebar = sidebar;
+
+        return this;
     }
 
     create (options) {
@@ -59,6 +66,57 @@ export default class Map {
 
         const controlsContainer = document.querySelector('.leaflet-control-zoom a:last-child');
         
+        /* search company */
+
+        this._searchCompany = new searchCompany();
+
+        const serchButtonTpl = `<a class="leaflet-control-search" href="#" title="Find Company" role="button" aria-label="Search"><span></span></a>`
+        const onboardingContainer = document.querySelector('#onboarding');
+
+        controlsContainer.insertAdjacentHTML('afterend', serchButtonTpl);
+        this._searchButton = document.body.getElementsByClassName('leaflet-control-search')[0]
+        this._searchButton.addEventListener("click", function(){
+            
+            onboardingContainer.innerHTML = `
+            <div class="onboarding__screen" id="obording_1">
+                <div class="onboarding__popup">
+                    
+                    <p>Enter the company name or UEN to display it on the map</p>
+                    <div class="company-search">
+                        <div class="company-search__line">
+                            <input type="text" id="search" placeholder="Company name or UEN" /><div id="searchbtn">Search</div>
+                        </div>
+                        <div class="company-search__suggest">
+                        </div>
+                    </div>
+                    <div class="button" id="show-company">Show company</div><div class="button button_ghost" id="close">Cancel</div>
+                </div>
+            </div>`
+
+            document.querySelector('#sidebar').classList.add('visible');
+
+        });
+        
+        onboardingContainer.addEventListener('click',function(e){
+            
+            if (e.target.id == 'show-company') {
+
+                _this._sidebar.hideAllItems();
+
+                _this._sidebar.removeAllUserFilters();
+
+                _this._sidebar.addUserFilter("46900") 
+                _this._sidebar.addUserFilter("46901")    
+                
+                document.querySelector('#sidebar').classList.remove('visible');
+
+                onboardingContainer.innerHTML = '';
+
+            }
+
+        })
+
+
 
         const playButtonTpl = `<a class="leaflet-control-play" href="#" title="Play" role="button" aria-label="Play" data-state="pause"><span></span></a>`
         controlsContainer.insertAdjacentHTML('afterend', playButtonTpl);
@@ -75,6 +133,9 @@ export default class Map {
             }    
 
         });
+
+        
+        
 
 
         this._svgMap = L.imageOverlay('../source/data/map.svg', [[1.1585, 103.602],	[1.472,	104.089]]).addTo(this._map);

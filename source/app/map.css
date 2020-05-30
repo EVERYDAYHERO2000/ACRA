@@ -52,6 +52,17 @@
     align-items: center;
 }
 
+.leaflet-control-search span {
+    background: url(../assets/icons.svg);
+    background-repeat: no-repeat;
+    width: 20px;
+    height: 20px;
+    background-position: 0 -140px;
+    transform-origin: center;
+    transform: translate(3px,10px) scale(1.4);
+    display: block;
+}
+
 .leaflet-bar a.leaflet-control-play span {
     background: url(../assets/icons.svg);
     background-repeat: no-repeat;
@@ -230,8 +241,7 @@
     background-color: rgba(0, 0, 0, 0.2);
     border-radius: 50%;
     color: transparent;
-    background-position: 0px -40px;
-    background-position: center;
+    background-position: 2px -38px;
     transform: translate(-3px, 3px) scale(0.8);
     user-select: none;
     transform-origin: center;
@@ -253,3 +263,4 @@
 .ct-point {
     display: none;
 }
+

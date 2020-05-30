@@ -80,6 +80,8 @@ onboardingContainer.addEventListener('click', function(e){
 
         onboardingContainer.innerHTML = '';
 
+        document.querySelector('.leaflet-control-search').style.display = 'block';
+
     }
 
     if (e.target.id == 'start-animation') {
@@ -110,6 +112,7 @@ onboardingContainer.addEventListener('click', function(e){
     if (e.target.id == 'start-tour') {
 
         document.querySelector('#sidebar').classList.add('visible');
+        document.querySelector('.leaflet-control-search').style.display = 'none'
 
         onboardingContainer.innerHTML = `
         <div class="onboarding__screen" id="obording_1">
@@ -124,11 +127,15 @@ onboardingContainer.addEventListener('click', function(e){
 
     if (e.target.id == 'skip-tour') {
 
+        document.querySelector('#sidebar').classList.remove('visible');
+
         onboardingContainer.innerHTML = '';
 
     }
 
     if (e.target.id == 'close') {
+
+        document.querySelector('#sidebar').classList.remove('visible');
 
         onboardingContainer.innerHTML = '';
 
@@ -269,7 +276,7 @@ app.data.load(function(dataset, dates, codes, history){
     
     app.map.setSsic(app.ssic).setGraph(app.graph);
 
-    app.map.setData(dataset, codes, dates, history);
+    app.map.setSidebar(app.sidebar).setData(dataset, codes, dates, history);
 
     app.filter.setData(dataset, codes, dates).setQuery(defaultQuery);
 
