@@ -136,6 +136,9 @@ export default class Map {
 
                 if (uen) {
 
+                    let suggest = document.querySelector('.company-search__suggest');
+                    suggest.innerHTML = '';
+
                     _this._searchCompany.requestSSIC(name,uen, function(d1){
 
                         if (d1.length){
@@ -158,16 +161,16 @@ export default class Map {
 
                                 _this._sidebar.removeAllUserFilters();
 
-                                let suggest = document.querySelector('.company-search__suggest');
-                                suggest.innerHTML = '';
+                                
+                                
 
                                 let descriptionParts = {
                                     name : _this._companySearchResult[id].entity_name,
                                     uen : `<div>UEN: <b>${_this._companySearchResult[id].uen}</b></div>`,
                                     description : (_this._companySearchResult[id].company_type_description && _this._companySearchResult[id].company_type_description != 'na') ? `<div>${_this._companySearchResult[id].company_type_description}</div>` : '',
-                                    ssic_1 : (_this._companySearchResult[id].primary_ssic_code && _this._companySearchResult[id].primary_ssic_code != 'na') ? `<div>Primary SSIC: <b>${_this._companySearchResult[id].primary_ssic_code}</b></div>` : '',
+                                    ssic_1 : (_this._companySearchResult[id].primary_ssic_code && _this._companySearchResult[id].primary_ssic_code != 'na') ? `<div class="ssic_1">Primary SSIC: <b>${_this._companySearchResult[id].primary_ssic_code}</b></div>` : '',
                                     ssic_1_d : (_this._companySearchResult[id].primary_ssic_description && _this._companySearchResult[id].primary_ssic_description != 'na') ? `<div>${_this._companySearchResult[id].primary_ssic_description}</div>` : '',
-                                    ssic_2 : (_this._companySearchResult[id].secondary_ssic_code && _this._companySearchResult[id].secondary_ssic_code != 'na') ? `<div>Primary SSIC: <b>${_this._companySearchResult[id].secondary_ssic_code}</b></div>` : '',
+                                    ssic_2 : (_this._companySearchResult[id].secondary_ssic_code && _this._companySearchResult[id].secondary_ssic_code != 'na') ? `<div class="ssic_2">Secondary SSIC: <b>${_this._companySearchResult[id].secondary_ssic_code}</b></div>` : '',
                                     ssic_2_d : (_this._companySearchResult[id].secondary_ssic_description && _this._companySearchResult[id].secondary_ssic_description != 'na') ? `<div>${_this._companySearchResult[id].secondary_ssic_description}</div>` : '',
                                 }    
 
@@ -240,6 +243,7 @@ export default class Map {
         });    
 
         function findCompany (value) {
+            
 
             let suggest = document.querySelector('.company-search__suggest');
             suggest.innerHTML = `<div class="spinner"><div class="spinner__inner"></div></div>`;

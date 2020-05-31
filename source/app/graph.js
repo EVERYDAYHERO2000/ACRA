@@ -137,16 +137,15 @@ export default class Graph {
 
                 for (var i = 0; i < _this._labels.length; i++) {
 
-                  if (i >= 96) {
-                    if ( result[i] - result[i-1] > result[i-1] - result[i-2] ) {
-                      vector = (result[i] - result[i-1]) - (result[i-1] - result[i-2]);
-                    } else if ( result[i] - result[i-1] < result[i-1] - result[i-2] ) {
-                      vector = (result[i-1] - result[i-2]) - (result[i] - result[i-1]);
-                    }
-                  }
+                  
 
-                  let prediction = last + i * Math.sin(last) + (vector / 25);
-                  result[i] = (i < 96) ? result[i] : (prediction > 0) ? prediction : 0;
+                  vector = result[i-1] - result[i];  
+
+                  //console.log(vector)
+
+                  let prediction = (vector > 0) ? last + (vector/45) : last + (vector/65)//i * Math.sin(last) + (vector / 25);
+                  result[i] = (i < 96) ? result[i] : prediction;
+                  
 
                   last = result[i];
                   

@@ -211,3 +211,27 @@
     background-position: 0 -140px;
     margin-right: 5px;
 }
+
+.ssic_1:before {
+    content :'';
+    width: 8px;
+    height: 8px;
+    min-width: 8px;
+    min-height: 8px;
+    border-radius: 50%;
+    background-color:#7fc7ff;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.ssic_2:before {
+    content :'';
+    width: 8px;
+    height: 8px;
+    min-width: 8px;
+    min-height: 8px;
+    border-radius: 50%;
+    background-color:#ff4f00;
+    display: inline-block;
+    margin-right: 5px;
+}
