@@ -84,8 +84,7 @@ export default class Map {
             onboardingContainer.innerHTML = `
             <div class="onboarding__screen" id="obording_1">
                 <div class="onboarding__popup">
-                    
-                    <p>Enter the company name or UEN to display it on the map</p>
+                    <p>Enter the company name or UEN to display it and company's SSIC on the map</p>
                     <div class="company-search">
                         <div class="company-search__line">
                             <input type="text" id="search" placeholder="Company name or UEN" /><div id="searchbtn">Search</div>
@@ -159,14 +158,31 @@ export default class Map {
 
                                 _this._sidebar.removeAllUserFilters();
 
-                                if (_this._companySearchResult[id].primary_ssic_code && _this._companySearchResult[id].primary_ssic_code != 'na') _this._sidebar.addUserFilter(_this._companySearchResult[id].primary_ssic_code+'',542); 
-                                if (_this._companySearchResult[id].secondary_ssic_code && _this._companySearchResult[id].secondary_ssic_code != 'na') _this._sidebar.addUserFilter(_this._companySearchResult[id].secondary_ssic_code+'',764);    
-                                
-
                                 let suggest = document.querySelector('.company-search__suggest');
                                 suggest.innerHTML = '';
 
-                                let description = `<h3>${_this._companySearchResult[id].entity_name}</h3>${_this._companySearchResult[id].company_type_description}`;
+                                let descriptionParts = {
+                                    name : _this._companySearchResult[id].entity_name,
+                                    uen : `<div>UEN: <b>${_this._companySearchResult[id].uen}</b></div>`,
+                                    description : (_this._companySearchResult[id].company_type_description && _this._companySearchResult[id].company_type_description != 'na') ? `<div>${_this._companySearchResult[id].company_type_description}</div>` : '',
+                                    ssic_1 : (_this._companySearchResult[id].primary_ssic_code && _this._companySearchResult[id].primary_ssic_code != 'na') ? `<div>Primary SSIC: <b>${_this._companySearchResult[id].primary_ssic_code}</b></div>` : '',
+                                    ssic_1_d : (_this._companySearchResult[id].primary_ssic_description && _this._companySearchResult[id].primary_ssic_description != 'na') ? `<div>${_this._companySearchResult[id].primary_ssic_description}</div>` : '',
+                                    ssic_2 : (_this._companySearchResult[id].secondary_ssic_code && _this._companySearchResult[id].secondary_ssic_code != 'na') ? `<div>Primary SSIC: <b>${_this._companySearchResult[id].secondary_ssic_code}</b></div>` : '',
+                                    ssic_2_d : (_this._companySearchResult[id].secondary_ssic_description && _this._companySearchResult[id].secondary_ssic_description != 'na') ? `<div>${_this._companySearchResult[id].secondary_ssic_description}</div>` : '',
+                                }    
+
+                                let description = `
+                                <h3>${descriptionParts.name}</h3>
+                                ${descriptionParts.uen}
+                                ${descriptionParts.description}
+                                <br>
+                                ${descriptionParts.ssic_1}
+                                ${descriptionParts.ssic_1_d}
+                                <br>
+                                ${descriptionParts.ssic_2}
+                                ${descriptionParts.ssic_2_d}`;
+
+
                                 let point = (_this._companySearchResult[id].lat && _this._companySearchResult[id].lon) ?  [+_this._companySearchResult[id].lat, +_this._companySearchResult[id].lon] : [1.358556385,103.795598745];
 
                                 _this._company.clearLayers();
@@ -180,10 +196,24 @@ export default class Map {
 
 
                                 setTimeout(function(){
-                                    document.querySelector('#sidebar').classList.remove('visible');
+                                    
                                     _this._map.setView(point, 13);
                                     onboardingContainer.innerHTML = '';
+
                                 },500);    
+
+                                setTimeout(function(){
+
+                                    if (_this._companySearchResult[id].primary_ssic_code && _this._companySearchResult[id].primary_ssic_code != 'na') _this._sidebar.addUserFilter(_this._companySearchResult[id].primary_ssic_code+'',542); 
+                                    if (_this._companySearchResult[id].secondary_ssic_code && _this._companySearchResult[id].secondary_ssic_code != 'na') _this._sidebar.addUserFilter(_this._companySearchResult[id].secondary_ssic_code+'',764);   
+
+                                },800);    
+
+                                setTimeout(function(){
+
+                                    document.querySelector('#sidebar').classList.remove('visible');
+
+                                },1500)
 
                                 console.log( _this._companySearchResult[id])
                                 
@@ -211,11 +241,14 @@ export default class Map {
 
         function findCompany (value) {
 
+            let suggest = document.querySelector('.company-search__suggest');
+            suggest.innerHTML = `<div class="spinner"><div class="spinner__inner"></div></div>`;
+
             _this._searchCompany.requestUEN(value, function(d){
 
                 if (d.length) {
 
-                    let suggest = document.querySelector('.company-search__suggest');
+                    
                     let suggestResult = '';
 
                     for (let el in d) {

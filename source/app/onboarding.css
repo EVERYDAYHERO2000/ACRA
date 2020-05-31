@@ -122,6 +122,35 @@
     width: 100%;
 }
 
+.company-search__suggest .spinner {
+    position: static;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    display: flex;
+    width: 100%;
+    max-width: none;
+    margin: 50px 0;
+    box-sizing: border-box;
+}
+
+.company-search__suggest .spinner__inner {
+    width: 25px;
+    height: 25px;
+}
+
+.company-search__suggest .spinner__inner:after {
+    position: absolute;
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: rgba(255, 255, 255, 1);
+    border-radius: 50%;
+    transform-origin: center;
+    transform: translate(-1px, 0px);
+}
+
 .suggest__item {
     padding: 0 10px;
     cursor:pointer;

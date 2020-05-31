@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="20px" height="160px" viewBox="0 0 20 160" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="20px" height="180px" viewBox="0 0 20 180" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
     <title>Artboard</title>
     <desc>Created with Sketch.</desc>
@@ -35,5 +35,6 @@
         </g>
         <circle id="Oval-6" stroke="#FFFFFF" stroke-width="2.5" fill-rule="nonzero" cx="10.5" cy="150.5" r="4.5"></circle>
         <path d="M14.5,154.5 L17.5,157.5" id="Line-4" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="square" fill-rule="nonzero"></path>
+        <path d="M10,177 C6.66666667,173.507616 5,170.840949 5,169 C5,166.238576 7.23857625,164 10,164 C12.7614237,164 15,166.238576 15,169 C15,170.840949 13.3333333,173.507616 10,177 Z M10,171 C11.1045695,171 12,170.104569 12,169 C12,167.895431 11.1045695,167 10,167 C8.8954305,167 8,167.895431 8,169 C8,170.104569 8.8954305,171 10,171 Z" id="Combined-Shape" fill="#FFFFFF" fill-rule="nonzero"></path>
     </g>
 </svg>
