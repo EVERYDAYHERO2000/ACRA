@@ -155,9 +155,9 @@ export default class Sidebar {
         return this;
     }
 
-    addUserFilter (value) {
+    addUserFilter (value,colorIndex) {
 
-        let tplitem = this._tplItem(this._query, value);
+        let tplitem = this._tplItem(this._query, value, colorIndex);
 
         let filterContainer = document.querySelector('.user-filter');
 

@@ -73,8 +73,10 @@ export default class searchCompany {
 
         let result = [];
         let url = ( /\D/.test( name[0] ) ) ? name[0].toLowerCase() : 'other';
+
+        const _this = this;
     
-        getData(`https://data.gov.sg/api/action/datastore_search?resource_id=${apiUrls.acraSSIC[url]}&q=${uen}`, function(d){
+        _this._dataRequest(`https://data.gov.sg/api/action/datastore_search?resource_id=${_this.apiUrls.acraSSIC[url]}&q=${uen}`, function(d){
     
             for (let i in d.result.records) {
     
@@ -94,10 +96,12 @@ export default class searchCompany {
     
         let result = [];
         let limit = 20;
+
+        const _this = this;
     
-        getData(`https://data.gov.sg/api/action/datastore_search?resource_id=${apiUrls.acraUEN.main}&limit=${limit}&q=${value}`, function(d1){
+        _this._dataRequest(`https://data.gov.sg/api/action/datastore_search?resource_id=${_this.apiUrls.acraUEN.main}&limit=${limit}&q=${value}`, function(d1){
     
-            getData(`https://data.gov.sg/api/action/datastore_search?resource_id=${apiUrls.acraUEN.other}&limit=${limit}&q=${value}`, function(d2){
+            _this._dataRequest(`https://data.gov.sg/api/action/datastore_search?resource_id=${_this.apiUrls.acraUEN.other}&limit=${limit}&q=${value}`, function(d2){
     
                 for (let i in d1.result.records) {
     
@@ -123,10 +127,14 @@ export default class searchCompany {
     
     
     requestGEO(street, block, callback) {
-    
+
+        street = street || '';
+
         let address = (block) ? `${block}%2F${street.replace(/\s+/gi, '+')}` : street.replace(/\s+/gi, '+');
+
+        const _this = this;
     
-        getData(`https://nominatim.openstreetmap.org/search.php?street=${address}&city=singapore&format=json`, function(d){
+        _this._dataRequest(`https://nominatim.openstreetmap.org/search.php?street=${address}&city=singapore&format=json`, function(d){
             callback(d)
         })    
 

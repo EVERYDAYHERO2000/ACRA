@@ -44,6 +44,8 @@ export default class Map {
             attributionControl: false
         });
 
+        this._companySearchResult = [];
+
         L.control.attribution({
             position: 'bottomleft'
         }).addTo(this._map);
@@ -68,6 +70,8 @@ export default class Map {
         
         /* search company */
 
+        this._company = L.layerGroup().addTo(this._map);
+
         this._searchCompany = new searchCompany();
 
         const serchButtonTpl = `<a class="leaflet-control-search" href="#" title="Find Company" role="button" aria-label="Search"><span></span></a>`
@@ -89,7 +93,7 @@ export default class Map {
                         <div class="company-search__suggest">
                         </div>
                     </div>
-                    <div class="button" id="show-company">Show company</div><div class="button button_ghost" id="close">Cancel</div>
+                    <div class="button button_ghost" id="close">Cancel</div>
                 </div>
             </div>`
 
@@ -114,8 +118,121 @@ export default class Map {
 
             }
 
+            if (e.target.id == 'searchbtn') {
+
+                let value = document.querySelector('#search').value
+                findCompany(value);
+
+            }    
+
+            if (e.target.className == 'suggest__item') {
+
+                let target = e.target.className;
+
+                let uen = (target) ? e.target.getAttribute('data-uen') : null;
+                let name = (target) ? e.target.getAttribute('data-name') : null;
+                let id = (target) ? e.target.getAttribute('data-id') : null;
+
+                let company = _this._companySearchResult[id];
+
+                if (uen) {
+
+                    _this._searchCompany.requestSSIC(name,uen, function(d1){
+
+                        if (d1.length){
+
+                            for (let k in d1[0]) _this._companySearchResult[id][k] = d1[0][k];
+            
+                        }
+
+                        _this._searchCompany.requestGEO(_this._companySearchResult[id].street_name, _this._companySearchResult[id].block, function(d2){
+
+                            if (d2.length) {
+            
+                                for (let k in d2[0]) {
+
+                                    _this._companySearchResult[id][k] = d2[0][k];
+
+                                }
+
+                                _this._sidebar.hideAllItems();
+
+                                _this._sidebar.removeAllUserFilters();
+
+                                if (_this._companySearchResult[id].primary_ssic_code && _this._companySearchResult[id].primary_ssic_code != 'na') _this._sidebar.addUserFilter(_this._companySearchResult[id].primary_ssic_code+'',542); 
+                                if (_this._companySearchResult[id].secondary_ssic_code && _this._companySearchResult[id].secondary_ssic_code != 'na') _this._sidebar.addUserFilter(_this._companySearchResult[id].secondary_ssic_code+'',764);    
+                                
+
+                                let suggest = document.querySelector('.company-search__suggest');
+                                suggest.innerHTML = '';
+
+                                let description = `<h3>${_this._companySearchResult[id].entity_name}</h3>${_this._companySearchResult[id].company_type_description}`;
+                                let point = (_this._companySearchResult[id].lat && _this._companySearchResult[id].lon) ?  [+_this._companySearchResult[id].lat, +_this._companySearchResult[id].lon] : [1.358556385,103.795598745];
+
+                                _this._company.clearLayers();
+
+                                let marker = new L.Marker(point, {
+                                    icon: new L.DivIcon({
+                                        className: 'company-marker',
+                                        html: '<div class="company-marker__inner"></div>'
+                                    })
+                                }).bindPopup(`${description}`).addTo(_this._company);
+
+
+                                setTimeout(function(){
+                                    document.querySelector('#sidebar').classList.remove('visible');
+                                    _this._map.setView(point, 13);
+                                    onboardingContainer.innerHTML = '';
+                                },500);    
+
+                                console.log( _this._companySearchResult[id])
+                                
+                            }
+
+                        })    
+
+                    })    
+
+                }    
+            }    
+
         })
 
+        onboardingContainer.addEventListener('keyup',function(e){
+
+            if (e.keyCode == 13) {
+
+                let value = document.querySelector('#search').value
+                findCompany(value);
+
+            }
+
+        });    
+
+        function findCompany (value) {
+
+            _this._searchCompany.requestUEN(value, function(d){
+
+                if (d.length) {
+
+                    let suggest = document.querySelector('.company-search__suggest');
+                    let suggestResult = '';
+
+                    for (let el in d) {
+
+                        if (d[el].reg_street_name && d[el].reg_street_name !== 'na') suggestResult += `<div class="suggest__item" data-id="${el}" data-uen="${d[el].uen}" data-name="${d[el].entity_name}">${d[el].entity_name} (UEN: ${d[el].uen})</div>`
+
+                    }
+
+                    suggest.innerHTML = suggestResult
+
+                }
+
+                _this._companySearchResult = d;
+
+            })
+
+        }
 
 
         const playButtonTpl = `<a class="leaflet-control-play" href="#" title="Play" role="button" aria-label="Play" data-state="pause"><span></span></a>`
@@ -311,6 +428,9 @@ export default class Map {
                     if (this._historyPlaces[i].type == 'Point') {
         
                         let point = [ this._historyPlaces[i].geom[1], this._historyPlaces[i].geom[0] ];
+
+                
+                        
                         let description = (this._historyPlaces[i].description) ? `<div class="place-cover" style="background-image:url(source/assets/history/${this._historyPlaces[i].image})"></div><h3>${this._historyPlaces[i].name}</h3>` + this._historyPlaces[i].description : `<div class="place-cover" style="background-image:url(source/assets/history/${this._historyPlaces[i].image})"></div><h3>${this._historyPlaces[i].name}</h3>`;
 
                         let marker = new L.Marker(point, {
